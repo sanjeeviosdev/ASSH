@@ -611,7 +611,7 @@
         [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
         _animateViewWillAppearWithFade = NO;
     }
-    self.markedTopics = [UIAPPDelegate fetchData];
+    self.markedTopics = [UIAPPDelegate fetchBookmarks];
 
     [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
 }
@@ -1107,10 +1107,11 @@
 
 if([cell.contentView subviews].count>0)
 {
-    for (int i=0; i < [[cell.contentView subviews] count];i++) {
+   //for (int i=0; i < [[cell.contentView subviews] count];i++) {
         
         UIButton *btn1=(UIButton *)[self.view viewWithTag:cell.tag+1000];
         UIButton *btn2=(UIButton *)[self.view viewWithTag:cell.tag+2000];
+         UIButton *btn3=(UIButton *)[self.view viewWithTag:cell.tag+3000];
         if (btn1) {
             [btn1 removeFromSuperview];
             
@@ -1120,9 +1121,15 @@ if([cell.contentView subviews].count>0)
             [btn2 removeFromSuperview];
             
         }
+    if (btn3){
         
+        [btn3 removeFromSuperview];
         
     }
+    
+    
+    
+    //}
 }
     
     
@@ -1162,6 +1169,20 @@ if([cell.contentView subviews].count>0)
 
         
         }
+    
+    
+             self.markedMags = [NSMutableArray new];
+          
+              PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
+                if([self.markedTopics containsObject:mag.fileName] == YES ) {
+                    
+                UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
+                    [bookmarkButton setImage:[UIImage imageNamed:@"bookmark1.png"] forState:UIControlStateNormal];
+                    bookmarkButton.tag=cell.tag+3000;
+                    [cell.contentView addSubview:bookmarkButton];
+                    bookmarkButton.userInteractionEnabled=NO;
+               }
+
 
 return (UICollectionViewCell *)cell;
 }
@@ -1526,8 +1547,10 @@ return (UICollectionViewCell *)cell;
         PSUICollectionViewCell *cell = (PSUICollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
         
         if([cell.contentView subviews].count>0)
+            
             {
-            for (int i=0; i < [[cell.contentView subviews] count];i++) {
+                
+               for (int i=0; i < [[cell.contentView subviews] count];i++) {
                 
                 UIButton *btn1=(UIButton *)[self.view viewWithTag:cell.tag+1000];
                 UIButton *btn2=(UIButton *)[self.view viewWithTag:cell.tag+2000];
