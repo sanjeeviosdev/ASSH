@@ -75,11 +75,9 @@
     } else {
         NSLog(@"Directory exists! %@", documentDBFolderPathForTopic);
     }
-    
-    self.navigationController.navigationBarHidden=YES;
+   self.navigationController.navigationBarHidden=YES;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
     
-   self.viewController = [[ASSHViewController alloc] initWithNibName:@"ASSHViewController" bundle:nil];
     PSCGridController *gridController = [[PSCGridController alloc] init];
 
     self.navigationController=[[UINavigationController alloc] initWithRootViewController:gridController];

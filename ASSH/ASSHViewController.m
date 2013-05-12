@@ -80,9 +80,6 @@
         
     }
     
-    
-    
-    
     // Changes done by Chandan to accomodate new requirement of keeping my topics separate
    
     NSString *documentDBFolderPathForTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
@@ -93,6 +90,8 @@
     } else {
         NSLog(@"Directory exists! %@", documentDBFolderPathForTopic);
     }
+    
+    
     
     self.navigationController.navigationBarHidden=YES;
     [super viewDidLoad];

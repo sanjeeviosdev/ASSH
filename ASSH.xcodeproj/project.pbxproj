@@ -158,7 +158,6 @@
 		A1DFAE62173E169E001AB599 /* PSCKioskPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE41173E169E001AB599 /* PSCKioskPDFViewController.m */; };
 		A1DFAE63173E169E001AB599 /* PSCMagazine.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE43173E169E001AB599 /* PSCMagazine.m */; };
 		A1DFAE64173E169E001AB599 /* PSCMagazineFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE45173E169E001AB599 /* PSCMagazineFolder.m */; };
-		A1DFAE65173E169E001AB599 /* PSCSaveAsPDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE47173E169E001AB599 /* PSCSaveAsPDFViewController.m */; };
 		A1DFAE66173E169E001AB599 /* PSCSettingsBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE49173E169E001AB599 /* PSCSettingsBarButtonItem.m */; };
 		A1DFAE67173E169E001AB599 /* PSCSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE4B173E169E001AB599 /* PSCSettingsController.m */; };
 		A1DFAE68173E169E001AB599 /* PSCShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE4D173E169E001AB599 /* PSCShadowView.m */; };
@@ -363,8 +362,6 @@
 		A1DFAE43173E169E001AB599 /* PSCMagazine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMagazine.m; sourceTree = "<group>"; };
 		A1DFAE44173E169E001AB599 /* PSCMagazineFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCMagazineFolder.h; sourceTree = "<group>"; };
 		A1DFAE45173E169E001AB599 /* PSCMagazineFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCMagazineFolder.m; sourceTree = "<group>"; };
-		A1DFAE46173E169E001AB599 /* PSCSaveAsPDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSaveAsPDFViewController.h; sourceTree = "<group>"; };
-		A1DFAE47173E169E001AB599 /* PSCSaveAsPDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSaveAsPDFViewController.m; sourceTree = "<group>"; };
 		A1DFAE48173E169E001AB599 /* PSCSettingsBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSettingsBarButtonItem.h; sourceTree = "<group>"; };
 		A1DFAE49173E169E001AB599 /* PSCSettingsBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCSettingsBarButtonItem.m; sourceTree = "<group>"; };
 		A1DFAE4A173E169E001AB599 /* PSCSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCSettingsController.h; sourceTree = "<group>"; };
@@ -734,8 +731,6 @@
 				A1DFAE43173E169E001AB599 /* PSCMagazine.m */,
 				A1DFAE44173E169E001AB599 /* PSCMagazineFolder.h */,
 				A1DFAE45173E169E001AB599 /* PSCMagazineFolder.m */,
-				A1DFAE46173E169E001AB599 /* PSCSaveAsPDFViewController.h */,
-				A1DFAE47173E169E001AB599 /* PSCSaveAsPDFViewController.m */,
 				A1DFAE48173E169E001AB599 /* PSCSettingsBarButtonItem.h */,
 				A1DFAE49173E169E001AB599 /* PSCSettingsBarButtonItem.m */,
 				A1DFAE4A173E169E001AB599 /* PSCSettingsController.h */,
@@ -944,7 +939,6 @@
 				A1DFAE62173E169E001AB599 /* PSCKioskPDFViewController.m in Sources */,
 				A1DFAE63173E169E001AB599 /* PSCMagazine.m in Sources */,
 				A1DFAE64173E169E001AB599 /* PSCMagazineFolder.m in Sources */,
-				A1DFAE65173E169E001AB599 /* PSCSaveAsPDFViewController.m in Sources */,
 				A1DFAE66173E169E001AB599 /* PSCSettingsBarButtonItem.m in Sources */,
 				A1DFAE67173E169E001AB599 /* PSCSettingsController.m in Sources */,
 				A1DFAE68173E169E001AB599 /* PSCShadowView.m in Sources */,

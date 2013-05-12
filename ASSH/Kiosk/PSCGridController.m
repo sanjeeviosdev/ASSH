@@ -889,6 +889,8 @@
 
 // Open magazine with a nice animation.
 - (BOOL)openMagazine:(PSCMagazine *)magazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
+    
+   
     self.lastOpenedMagazine = magazine;
     // [self.searchBar resignFirstResponder];
     magazine.overrideClassNames = @{(id)[PSPDFBookmarkParser class] : [PSCBookmarkParser class]};
@@ -900,6 +902,8 @@
     });
     
     PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
+    
+        
     
     
     // Try to get full-size image, if that fails try thumbnail.
@@ -1446,6 +1450,7 @@ return (UICollectionViewCell *)cell;
         if (cellIndex != NSNotFound) {
             [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:cellIndex inSection:0]]];
         }else {
+            
             PSCLog(@"index not found for %@", magazineFolder);
         }
     }

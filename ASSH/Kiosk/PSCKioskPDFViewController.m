@@ -46,9 +46,7 @@
         document.delegate = self;
         self.pscBookmarkParser=[[PSCBookmarkParser alloc]initWithDocument:document];
         
-       // NSArray *bookmarks = self.pscBookmarkParser.bookmarks;
-
-        // Initially update vars.
+       // Initially update vars.
         [self globalVarChanged];
         
         // Register for global var change notifications from PSPDFCacheSettingsController.
@@ -58,6 +56,11 @@
                                                 selector:@selector(shareBtn:)
                                                     name:@"sharepopover"
                                                         object:nil];
+        
+        
+        
+        
+        
                         
         // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
@@ -72,10 +75,10 @@
         });
          */
         
-        self.documentFileName = [NSString stringWithFormat:@"temp_%@", document.title];
+       // self.documentFileName = [NSString stringWithFormat:@"temp_%@", document.title];
         
         
-        
+        //remove some options from annotation toolbar
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
         [editableTypes removeAllObjects];
         [editableTypes addObject:PSPDFAnnotationTypeStringNote];
@@ -83,12 +86,7 @@
         [editableTypes addObject:PSPDFAnnotationTypeStringHighlight];
         [editableTypes addObject:PSPDFAnnotationTypeStringUnderline];
         [editableTypes addObject:PSPDFAnnotationTypeStringStrikeout];
-
-
-
         self.annotationButtonItem.annotationToolbar.editableAnnotationTypes = editableTypes;
-        
-        
         
         
         // UI: Parse outline early, prevents possible toolbar update during the fade-in. (outline is lazily evaluated)
@@ -102,7 +100,6 @@
         self.leftBarButtonItems = @[_closeButtonItem];
 
         // Change color.
-        //self.tintColor = [UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
         self.tintColor = [UIColor grayColor];
         //self.statusBarStyleSetting = PSPDFStatusBarDefault;
         
@@ -110,10 +107,10 @@
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
         //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;
         
+       // [self.navigationController setToolbarHidden:YES animated:YES];
         
-        
-        
-        
+    
+
     }
     
 
@@ -131,6 +128,7 @@
     
     if ([str isEqualToString:@"share"])
     {
+        [self saveAnnotations];
         
         if ([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
@@ -199,10 +197,7 @@
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
         documentDBFolderPath=[documentDBFolderPath stringByAppendingPathComponent:str];
-        
-        //NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
-        //resourceDBFolderPath=[resourceDBFolderPath stringByAppendingPathComponent:str];
-        
+    
         [fileManager removeItemAtPath:documentDBFolderPath error:&error];
         
         BOOL animated = YES;
@@ -228,12 +223,7 @@
     NSDictionary *dirtyAnnotations = [self.document.annotationParser dirtyAnnotations];
     if ([dirtyAnnotations count] == 0) {
         [self close];
-//        NSError *error;
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
-//        NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
-//        documentDBFolderPath = [documentDBFolderPath stringByAppendingPathComponent:self.documentFileName];
-//        [[NSFileManager defaultManager] removeItemAtPath:documentDBFolderPath error:&error];
+
     } else {
         [self showSaveAsDialog];
     }
@@ -680,25 +670,8 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 //        NSLog(@"Successfully saved annotations: %@", annotations);
 //        NSLog(@" count==%i",[annotations count]);
 //        
-//        NSMutableArray *annotationArray=[[NSMutableArray alloc] init];
-//        
-//        NSLog(@"%@",[annotations[0] contents]);
-//        NSLog(@"%ld",(long)[annotations[0] indexOnPage]);
-//        //NSLog(@"%@",[[annotations[0] document] basePath]);
-//        
-//        
-//        NSLog(@"%@",[[[annotations[0] document] files] objectAtIndex:0]);
-    
         
-        /*
-        
-         //[annotationArray addObject:[[annotations[0] document] basePath]];
-        [annotationArray addObject:[[[annotations[0] document] files] objectAtIndex:0]];
-        [annotationArray addObject:[annotations[0] contents]];
-        [annotationArray addObject:indexStr];
-        [UIAPPDelegate insertData:annotationArray];
-         */
-    
+           
      if (document.data) NSLog(@"This is your time to save the updated data!");
     
 }
@@ -729,7 +702,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 
 -(void)shareAction
 {
-    [self saveAnnotations];
+   // [self saveAnnotations];
 
     if(![self.popoverController isPopoverVisible]){
         
@@ -758,50 +731,73 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         
         [self close];
 
-        
-        
-    }
+        }
     else
     {
         
-        [self saveAnnotations];
-        NSString *str = [self.magazine fileName]; 
+        NSString *str = [self.magazine fileName];
         
-        self.documentFileName = [NSString stringWithFormat:@"%@", self.document.title];
+        //self.documentFileName = [NSString stringWithFormat:@"%@", self.document.title];
+        
+        NSString *filename=[textfield.text stringByAppendingString:@".pdf"];
 
-        //UITextField *textfield=(UITextField *)[self.view viewWithTag:100];
         //get the doc directory path
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *error;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
-        NSString *documentDBFolderPathinMyTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
-        NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
-         resourceDBFolderPath=[resourceDBFolderPath stringByAppendingPathComponent:str];
         //current file path
         NSString *currntPath=[documentDBFolderPath stringByAppendingPathComponent:str];
-        // new file path to store
-        
-        NSString *filename=[textfield.text stringByAppendingString:@".pdf"];
-        NSString *newPath=[documentDBFolderPathinMyTopic stringByAppendingPathComponent:filename];
-         
-       // if (![fileManager fileExistsAtPath:newPath]) {
-            //File does not exist, copy it
-            [fileManager copyItemAtPath:currntPath toPath:newPath error:&error];
-        
-       //} else {
-        
-          //  NSLog(@"File exists: %@", newPath);
-        
-       // }
-        
-        //remove the curren file from sample directory
-        
-          [fileManager removeItemAtPath:currntPath error:&error];
-        [fileManager copyItemAtPath:resourceDBFolderPath toPath:currntPath error:&error];
-        
 
+        NSString *documentDBFolderPathinMyTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+        if ([UIAPPDelegate isMyTopic])
+        {
+            
+            NSString *newPath;
+            newPath=[documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+            newPath = [newPath stringByAppendingPathComponent:filename];
+            NSURL *newURL = [NSURL fileURLWithPath:newPath];
+            
+            NSError *error;
+            if (![[NSFileManager defaultManager] copyItemAtURL:self.document.fileURL toURL:newURL error:&error]) {
+                PSPDFLogWarning(@"Failed to copy file to %@: %@", newURL.path, [error localizedDescription]);
+            }else {
+                
+                // Since the annotation has already been edited, we copy the file *before* it will be saved
+                // then save the current state and switch out the documents.
+                if (![self.document saveChangedAnnotationsWithError:&error]) {
+                    PSPDFLogWarning(@"Failed to save annotations: %@", [error localizedDescription]);
+                }
+                NSURL *tmpURL = [newURL URLByAppendingPathExtension:@"temp"];
+                if (![[NSFileManager defaultManager] moveItemAtURL:self.document.fileURL toURL:tmpURL error:&error]) {
+                    PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                }
+                if (![[NSFileManager defaultManager] moveItemAtURL:newURL toURL:self.document.fileURL error:&error]) {
+                    PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                }
+                if (![[NSFileManager defaultManager] moveItemAtURL:tmpURL toURL:newURL error:&error]) {
+                    PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                }
+                // Finally update the fileURL, this will clear the current document cache.
+                self.document.fileURL = newURL;
+            }
+          
+        }
+        else
+            
+        {
+        
+              [self saveAnnotations];
+              NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+              resourceDBFolderPath=[resourceDBFolderPath stringByAppendingPathComponent:str];
+              // new file path to store
+              NSString *newPath=[documentDBFolderPathinMyTopic stringByAppendingPathComponent:filename];
+              [fileManager copyItemAtPath:currntPath toPath:newPath error:&error];
+              [fileManager removeItemAtPath:currntPath error:&error];
+              [fileManager copyItemAtPath:resourceDBFolderPath toPath:currntPath error:&error];
+        
+        }
       
        
         
@@ -809,7 +805,6 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         [self close];
     }
 }
-
 
 
 
