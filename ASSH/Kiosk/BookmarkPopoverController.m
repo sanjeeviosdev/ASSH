@@ -152,9 +152,12 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    NSString *topicStr=[[[self.topicsArray objectAtIndex:indexPath.row] files] objectAtIndex:0];
+    topicStr=[topicStr stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
+    cell.textLabel.text=topicStr;
+
     
-    
-    cell.textLabel.text=[[[self.topicsArray objectAtIndex:indexPath.row] files] objectAtIndex:0];
+    //cell.textLabel.text=[[[self.topicsArray objectAtIndex:indexPath.row] files] objectAtIndex:0];
     
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;

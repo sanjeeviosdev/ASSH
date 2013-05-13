@@ -18,6 +18,7 @@
 #import "SDURLCache.h"
 #import "MyPopOverView.h"
 #import "ASSHAppDelegate.h"
+#import "ListPopoverViewController.h"
 
 
 
@@ -109,6 +110,13 @@
                                                  name:@"selectBookmark"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(selectMagazine:)
+                                                 name:@"selectTopic"
+                                               object:nil];
+
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cancel)
                                                  name:@"cancelpopover"
                                                object:nil];
@@ -124,6 +132,16 @@
     self.tools.tintColor = [UIColor colorWithWhite:0.305f alpha:0.0f]; // closest I could get by eye to black, translucent style.
     // anyone know how to get it perfect?
     self.tools.barStyle = -1; // clear background
+    
+    
+    //listButton
+    
+    UIButton *listBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *listBtnImage = [UIImage imageNamed:@"list_icon.png"];
+    [listBtn setBackgroundImage:listBtnImage forState:UIControlStateNormal];
+    [listBtn addTarget:self action:@selector(listAction) forControlEvents:UIControlEventTouchUpInside];
+    [listBtn setFrame:CGRectMake(0, 0, 36, 37)];
+    self.list = [[UIBarButtonItem alloc] initWithCustomView:listBtn];
     
     // Create a segment control
     
@@ -206,7 +224,7 @@
     self.help = [[UIBarButtonItem alloc] initWithCustomView:helpBtn];
    // [buttons addObject:help];
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+    [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     
   UIBarButtonItem *custom = [[UIBarButtonItem alloc] initWithCustomView:self.tools];
     //[self.navigationController.navigationBar addSubview:tools];
@@ -288,9 +306,9 @@
 
 - (void) changeButtonsOnTabChange:(int) tabId{
     if (tabId == 0) {
-        [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer, self.bigspacer, self.bigspacer,  self.bigspacer,self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.bigspacer,  self.bigspacer,self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     } else {
-        [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer, self.share, self.bigspacer,  self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share, self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     }
 }
 
@@ -305,7 +323,33 @@
         self.searchBar = nil;
     }
 }
+-(void)listAction
+    {
+        if(![popoverController isPopoverVisible]){
+            self.listPopover = [[ListPopoverViewController alloc] initWithNibName:@"ListPopoverViewController" bundle:nil];
+            self.listPopover.topicsArray=_filteredData;
+            popoverController = [[UIPopoverController alloc] initWithContentViewController:self.listPopover];
+            //[popoverController setDelegate:self];
+            int arrCount=[_filteredData count];
+            int height= arrCount*44;
+            float popoverheight=(float)height;
+            
+            if (arrCount==0) {
+                 [popoverController setPopoverContentSize:CGSizeMake(360.0f, 200)];
+            }
+            else
+               [popoverController setPopoverContentSize:CGSizeMake(360.0f, popoverheight)];
+            if (self.view.window != nil)
+                
+                [popoverController presentPopoverFromRect:CGRectMake(0, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            
+        }else {
+            [popoverController dismissPopoverAnimated:YES];
+            popoverController.delegate=nil;
+        }
+        
 
+    }
 
 -(void)shareAction
 {
@@ -336,9 +380,14 @@
          NSString *mailBody =   [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailBody"];
             
          NSString *mailSignature = [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailSignature"];
-            if([mailBody isEqualToString:@"" ])
+            if([mailBody isEqualToString:@""]||mailBody==nil||[mailBody isEqualToString:@"(null)"])
             {
                 mailBody=@"This mail is sent by ASSH Application";
+            }
+            if([mailSignature isEqualToString:@""]||mailSignature==nil||[mailSignature isEqualToString:@"(null)"])
+                   
+            {
+                mailSignature=@"";
             }
             
             NSString *finalEmailbody=[NSString stringWithFormat:@"%@ \n\n\n %@ ",mailBody,mailSignature];
@@ -365,35 +414,15 @@
 -(void)clearAction
 
 {
-//    for (int i=0; i<[_filteredData count]; i++) {
-//    
-//
-//
-//     PSCImageGridViewCell *cell = (PSCImageGridViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
-//    
-//   
-//            
-//            UIButton *btn1=(UIButton *)[self.view viewWithTag:cell.tag+1000];
-//            UIButton *btn2=(UIButton *)[self.view viewWithTag:cell.tag+2000];
-//            if (btn1) {
-//                [btn1 removeFromSuperview];
-//                
-//            }
-//            if (btn2){
-//                
-//                [btn2 removeFromSuperview];
-//                
-//            }
-//            
-//        }
-    
 
     self.longPressed=NO;
 
     self.clearPressed=YES;
     [self.sharePdfArray removeAllObjects];
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+    [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share, self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+    
+    //[self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     
 
     
@@ -481,6 +510,15 @@
     
     
 }
+- (void)selectMagazine:(NSNotification *)notif {
+    [popoverController dismissPopoverAnimated:YES];
+    
+    PSCMagazine *mag=(PSCMagazine *)[notif object];
+    [self openMagazine:mag];
+    
+    
+}
+
 
 - (void)getEntity:(NSNotification *)notif {
     NSString *str = (NSString *)[notif object];
@@ -1214,7 +1252,7 @@ return (UICollectionViewCell *)cell;
         
     self.longPressed=YES;
         
-     [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer, self.share,self.clear, self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+     [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list, self.segment, self.spacer, self.share,self.clear, self.spacer,self.titleLAbel,self.spacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
       
         
              

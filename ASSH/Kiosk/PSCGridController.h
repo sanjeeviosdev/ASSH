@@ -10,6 +10,7 @@
 #import "MypopoverView.h"
 #import "HelpPopoverController.h"
 #import "BookmarkPopoverController.h"
+#import "ListPopoverViewController.h"
 
 @class PSCMagazineFolder;
 
@@ -31,6 +32,8 @@
 @property (nonatomic, strong, readonly) PSCMagazineFolder *magazineFolder;
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, strong)BookmarkPopoverController *bookmarkPopover;
+@property (nonatomic, strong)ListPopoverViewController *listPopover;
+
 @property (nonatomic, strong) MypopoverView *myPopOver;
 @property (nonatomic, strong) HelpPopoverController *helpPopOver;
 @property (nonatomic, strong) NSMutableArray *markedTopics;
@@ -47,6 +50,7 @@
 @property(nonatomic,strong)UIBarButtonItem *help;
 @property(nonatomic,strong)UIBarButtonItem *clear;
 @property(nonatomic,strong)UISearchBar *searchBar;
+@property(nonatomic,strong)UIBarButtonItem *list;
 @property(nonatomic,strong) UILongPressGestureRecognizer *longPress;
 
 

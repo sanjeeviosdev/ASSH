@@ -58,10 +58,6 @@
                                                         object:nil];
         
         
-        
-        
-        
-                        
         // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
         // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
         // Disabled by default, since this can be slow.
@@ -152,11 +148,15 @@
             NSString *mailBody =   [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailBody"];
             
             NSString *mailSignature = [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailSignature"];
-            if([mailBody isEqualToString:@"" ])
+            if([mailBody isEqualToString:@""]||mailBody==nil||[mailBody isEqualToString:@"(null)"])
             {
                 mailBody=@"This mail is sent by ASSH Application";
             }
-            
+            if([mailSignature isEqualToString:@""]||mailSignature==nil||[mailSignature isEqualToString:@"(null)"])
+                
+            {
+                mailSignature=@"";
+            }
             NSString *finalEmailbody=[NSString stringWithFormat:@"%@ \n\n\n %@ ",mailBody,mailSignature];
             
             [mailController setMessageBody:finalEmailbody isHTML:NO];
@@ -232,7 +232,7 @@
 }
 
 - (void) showSaveAsDialog {
-    NSString *str = self.magazine.title;
+    NSString *str = [NSString stringWithFormat:@"%@", [[self.document.fileURL lastPathComponent] stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
     UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Save as new topic" message:@"\n \n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
     // create text field
     textfield=[[UITextField alloc] initWithFrame:CGRectMake(20, 50, 240, 33)];
@@ -727,15 +727,17 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
 - (void) alertView:(UIAlertView *) alertSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
-    if (buttonIndex==0 ) { 
+    if (buttonIndex==0 ) {
         
+        [self.document clearCache];
         [self close];
 
         }
     else
     {
         
-        NSString *str = [self.magazine fileName];
+       // NSString *str = [self.magazine fileName];
+        NSString *str = [NSString stringWithFormat:@"%@", [self.document.fileURL lastPathComponent]];
         
         //self.documentFileName = [NSString stringWithFormat:@"%@", self.document.title];
         
@@ -751,7 +753,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         NSString *currntPath=[documentDBFolderPath stringByAppendingPathComponent:str];
 
         NSString *documentDBFolderPathinMyTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
-        if ([UIAPPDelegate isMyTopic])
+    if ([UIAPPDelegate isMyTopic])
         {
             
             NSString *newPath;
@@ -786,23 +788,44 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         }
         else
             
-        {
+            {
         
-              [self saveAnnotations];
+           
               NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
+                
+                
               resourceDBFolderPath=[resourceDBFolderPath stringByAppendingPathComponent:str];
               // new file path to store
               NSString *newPath=[documentDBFolderPathinMyTopic stringByAppendingPathComponent:filename];
-              [fileManager copyItemAtPath:currntPath toPath:newPath error:&error];
-              [fileManager removeItemAtPath:currntPath error:&error];
-              [fileManager copyItemAtPath:resourceDBFolderPath toPath:currntPath error:&error];
+                
+                
+               if (![fileManager fileExistsAtPath:newPath]) {
+                   [self saveAnnotations];
+
+                   [fileManager copyItemAtPath:currntPath toPath:newPath error:&error];
+                   [fileManager removeItemAtPath:currntPath error:&error];
+                   [fileManager copyItemAtPath:resourceDBFolderPath toPath:currntPath error:&error];
+                    [self close];
+
+                }
+                else
+                {
+                    
+                    
+                   UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Save as" message:@"File already exist with same name, Please choose different name" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                    [alert show];
+                    
+                }
+                
+                   
+             
         
         }
       
        
         
 
-        [self close];
+       
     }
 }
 

@@ -139,6 +139,8 @@
 		A1CCB27F1732F53500B5402F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1CCB27E1732F53500B5402F /* MobileCoreServices.framework */; };
 		A1CF1EEC1714928100326ED8 /* ASSHModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A1CF1EEA1714928100326ED8 /* ASSHModel.xcdatamodeld */; };
 		A1D0AAD4170E03FD000E28DF /* Samples in Resources */ = {isa = PBXBuildFile; fileRef = A1D0AAD3170E03FD000E28DF /* Samples */; };
+		A1D632E41741625C004E225E /* ListPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D632E21741625C004E225E /* ListPopoverViewController.m */; };
+		A1D632E51741625C004E225E /* ListPopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D632E31741625C004E225E /* ListPopoverViewController.xib */; };
 		A1DADE0F171DE0E4007475DD /* Bookmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DADE0E171DE0E4007475DD /* Bookmarks.m */; };
 		A1DFAE53173E169E001AB599 /* BookmarkPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1DFAE27173E169E001AB599 /* BookmarkPopoverController.m */; };
 		A1DFAE54173E169E001AB599 /* BookmarkPopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1DFAE28173E169E001AB599 /* BookmarkPopoverController.xib */; };
@@ -328,6 +330,9 @@
 		A1CCB27E1732F53500B5402F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A1CF1EEB1714928100326ED8 /* ASSHModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ASSHModel.xcdatamodel; sourceTree = "<group>"; };
 		A1D0AAD3170E03FD000E28DF /* Samples */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Samples; sourceTree = "<group>"; };
+		A1D632E11741625C004E225E /* ListPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPopoverViewController.h; sourceTree = "<group>"; };
+		A1D632E21741625C004E225E /* ListPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPopoverViewController.m; sourceTree = "<group>"; };
+		A1D632E31741625C004E225E /* ListPopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListPopoverViewController.xib; sourceTree = "<group>"; };
 		A1DADE0D171DE0E4007475DD /* Bookmarks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmarks.h; sourceTree = "<group>"; };
 		A1DADE0E171DE0E4007475DD /* Bookmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmarks.m; sourceTree = "<group>"; };
 		A1DFAE26173E169E001AB599 /* BookmarkPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkPopoverController.h; sourceTree = "<group>"; };
@@ -723,6 +728,9 @@
 				A1DFAE3B173E169E001AB599 /* PSCDownload.m */,
 				A1DFAE3C173E169E001AB599 /* PSCGridController.h */,
 				A1DFAE3D173E169E001AB599 /* PSCGridController.m */,
+				A1D632E11741625C004E225E /* ListPopoverViewController.h */,
+				A1D632E21741625C004E225E /* ListPopoverViewController.m */,
+				A1D632E31741625C004E225E /* ListPopoverViewController.xib */,
 				A1DFAE3E173E169E001AB599 /* PSCImageGridViewCell.h */,
 				A1DFAE3F173E169E001AB599 /* PSCImageGridViewCell.m */,
 				A1DFAE40173E169E001AB599 /* PSCKioskPDFViewController.h */,
@@ -891,6 +899,7 @@
 				A1DFAE58173E169E001AB599 /* HelpPopoverController.xib in Resources */,
 				A1DFAE5A173E169E001AB599 /* MypopoverView.xib in Resources */,
 				A1DFAE6B173E169E001AB599 /* SharePopoverView.xib in Resources */,
+				A1D632E51741625C004E225E /* ListPopoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,6 +954,7 @@
 				A1DFAE69173E169E001AB599 /* PSCStoreManager.m in Sources */,
 				A1DFAE6A173E169E001AB599 /* SharePopoverView.m in Sources */,
 				A1DFAE6D173E2B86001AB599 /* ASSHViewController.m in Sources */,
+				A1D632E41741625C004E225E /* ListPopoverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
