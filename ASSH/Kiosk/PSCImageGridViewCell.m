@@ -113,6 +113,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.backgroundColor = [UIColor clearColor];
         pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
         pageLabel.shadowColor = [UIColor blackColor];
+       // pageLabel.numberOfLines=-1;
         pageLabel.shadowOffset = CGSizeMake(0, 1);
         pageLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
         pageLabel.textAlignment = UITextAlignmentCenter;
@@ -249,7 +250,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
         NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updatePageLabel]; // create lazily
-        self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
+        //self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
         [self updatePageLabel];
         self.accessibilityLabel = self.pageLabel.text;
     }

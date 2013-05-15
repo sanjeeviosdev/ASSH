@@ -468,7 +468,7 @@
     helpPopOver = [[HelpPopoverController alloc] initWithNibName:@"HelpPopoverController" bundle:nil];
     popoverController = [[UIPopoverController alloc] initWithContentViewController:helpPopOver];
     //[popoverController setDelegate:self];
-    [popoverController setPopoverContentSize:CGSizeMake(500.0f, 800.0f)];
+    [popoverController setPopoverContentSize:CGSizeMake(328.0f, 433.0f)];
     if (self.view.window != nil)
         [popoverController presentPopoverFromRect:CGRectMake(900, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
     

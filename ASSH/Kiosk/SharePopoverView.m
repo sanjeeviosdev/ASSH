@@ -7,6 +7,7 @@
 //
 
 #import "SharePopoverView.h"
+#import "ASSHAppDelegate.h"
 
 @interface SharePopoverView ()
 
@@ -46,6 +47,12 @@
     removeTopic.clipsToBounds = YES;
     removeTopic.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     removeTopic.layer.borderWidth = 3.0;
+    
+    if (![UIAPPDelegate isMyTopic]) {
+        clearBtn.hidden=YES;
+        removeTopic.hidden=YES;
+        saveAsBtn.hidden=YES;
+    }
 
     
     // Do any additional setup after loading the view from its nib.

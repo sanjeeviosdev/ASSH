@@ -6,8 +6,9 @@
 //
 #import "PSCBookmarkParser.h"
 #import "SharePopoverView.h"
+#import "MBProgressHUD.h"
 
-
+@class MBProgressHUD;
 @class PSCMagazine;
 
 /// Customized subclass of PSPDFViewController, adding more HUD buttons.

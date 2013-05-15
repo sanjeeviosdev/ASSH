@@ -64,6 +64,9 @@
     
     
     
+    NSString *resourceDBFolderPathNew = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"SpecialPDF"];
+    NSString *documentDBFolderPathNew = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+
     
     // Changes done by Chandan to accomodate new requirement of keeping my topics separate
     
@@ -75,6 +78,24 @@
     } else {
         NSLog(@"Directory exists! %@", documentDBFolderPathForTopic);
     }
+    
+    
+    NSArray *fileList1 = [fileManager contentsOfDirectoryAtPath:resourceDBFolderPathNew error:&error];
+    for (NSString *s in fileList1) {
+        NSString *newFilePath = [documentDBFolderPathNew stringByAppendingPathComponent:s];
+        NSString *oldFilePath = [resourceDBFolderPathNew stringByAppendingPathComponent:s];
+        if (![fileManager fileExistsAtPath:newFilePath]) {
+            //File does not exist, copy it
+            [fileManager copyItemAtPath:oldFilePath toPath:newFilePath error:&error];
+        } else {
+            NSLog(@"File exists: %@", newFilePath);
+        }
+        
+    }
+    
+   
+    
+    
    self.navigationController.navigationBarHidden=YES;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
     

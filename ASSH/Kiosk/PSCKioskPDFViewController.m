@@ -15,6 +15,8 @@
 #import "PSCGoToPageButtonItem.h"
 #import "PSCMetadataBarButtonItem.h"
 #import "PSCCustomBookmarkBarButtonItem.h"
+
+
 #endif
 
 #if !__has_feature(objc_arc)
@@ -375,6 +377,7 @@ if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue])
     if (PSIsIpad()) {
         if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
             [rightBarButtonItems addObject:self.outlineButtonItem];
+             self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
         }
 //        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
 //            [rightBarButtonItems addObject:self.searchButtonItem];
@@ -736,6 +739,10 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     else
     {
         
+        // show activity indicator
+        [MBProgressHUD showHUDAddedTo:self.view animated:NO];
+
+        
        // NSString *str = [self.magazine fileName];
         NSString *str = [NSString stringWithFormat:@"%@", [self.document.fileURL lastPathComponent]];
         
@@ -755,7 +762,6 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         NSString *documentDBFolderPathinMyTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
     if ([UIAPPDelegate isMyTopic])
         {
-            
             NSString *newPath;
             newPath=[documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
             newPath = [newPath stringByAppendingPathComponent:filename];
@@ -784,6 +790,8 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
                 // Finally update the fileURL, this will clear the current document cache.
                 self.document.fileURL = newURL;
             }
+            [self close];
+
           
         }
         else
@@ -822,10 +830,9 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         
         }
       
-       
-        
-
-       
+         // hide activity indicator
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+ 
     }
 }
 

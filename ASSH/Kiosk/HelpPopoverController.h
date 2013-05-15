@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HelpPageViewController.h"
 
-@interface HelpPopoverController : UIViewController
+@interface HelpPopoverController : UIViewController<UIScrollViewDelegate>
+{
+IBOutlet UIScrollView *scrollView;
+IBOutlet UIPageControl *pageControl;
+NSMutableArray *viewControllers;
+BOOL pageControlUsed;
+
+}
+@property (nonatomic, retain) UIScrollView *scrollView;
+@property (nonatomic, retain) UIPageControl *pageControl;
+@property (nonatomic, retain) NSMutableArray *viewControllers;
+
+- (IBAction)changePage:(id)sender;
 
 @end
