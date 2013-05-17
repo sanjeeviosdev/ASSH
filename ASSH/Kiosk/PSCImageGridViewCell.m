@@ -113,25 +113,26 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         pageLabel.backgroundColor = [UIColor clearColor];
         pageLabel.textColor = [UIColor colorWithWhite:1.f alpha:1.f];
         pageLabel.shadowColor = [UIColor blackColor];
-       // pageLabel.numberOfLines=-1;
         pageLabel.shadowOffset = CGSizeMake(0, 1);
+        pageLabel.numberOfLines=2;
+        
         pageLabel.lineBreakMode = UILineBreakModeMiddleTruncation;
+        
         pageLabel.textAlignment = UITextAlignmentCenter;
         pageLabel.font = [UIFont boldSystemFontOfSize:PSIsIpad() ? 16 : 12];
         self.pageLabel = (PSPDFRoundedLabel *)pageLabel;
         [self.contentView addSubview:pageLabel];
-    }else if (!self.isShowingPageLabel && self.pageLabel.superview) {
+    }else if (!self.isShowingPageLabel && self.pageLabel.superview){
         [self.pageLabel removeFromSuperview];
     }
-
+    
     // Calculate new frame and position correct.
-    self.pageLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 20));
-
+    self.pageLabel.frame = CGRectIntegral(CGRectMake(0, self.imageView.frame.origin.y+self.imageView.frame.size.height, self.frame.size.width, 40));
+    
     if (self.pageLabel.superview) {
         [self.contentView bringSubviewToFront:self.pageLabel];
     }
 }
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - KVO
 
@@ -250,7 +251,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
         NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updatePageLabel]; // create lazily
-        //self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
+        self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
         [self updatePageLabel];
         self.accessibilityLabel = self.pageLabel.text;
     }

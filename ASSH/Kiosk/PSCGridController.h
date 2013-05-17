@@ -40,7 +40,7 @@
 @property (nonatomic, strong) NSMutableArray *markedMags;
 @property(nonatomic,strong)UIToolbar *tools;
 @property(nonatomic,strong)UIBarButtonItem *segment;
-@property(nonatomic,strong)UIBarButtonItem *titleLAbel;
+@property(nonatomic,strong)UIBarButtonItem *biggerSpacer;
 @property(nonatomic,strong)UIBarButtonItem *spacer;
 @property(nonatomic,strong)UIBarButtonItem *bigspacer;
 @property(nonatomic,strong)UIBarButtonItem *share;

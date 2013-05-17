@@ -140,7 +140,7 @@
     UIImage *listBtnImage = [UIImage imageNamed:@"list_icon.png"];
     [listBtn setBackgroundImage:listBtnImage forState:UIControlStateNormal];
     [listBtn addTarget:self action:@selector(listAction) forControlEvents:UIControlEventTouchUpInside];
-    [listBtn setFrame:CGRectMake(0, 0, 36, 37)];
+    [listBtn setFrame:CGRectMake(0, 0, 30, 31)];
     self.list = [[UIBarButtonItem alloc] initWithCustomView:listBtn];
     
     // Create a segment control
@@ -153,13 +153,19 @@
     seg1.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
      self.segment = [[UIBarButtonItem alloc] initWithCustomView:seg1];
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,45,45)];
-    label.textColor = [UIColor grayColor];
-    label.backgroundColor=[UIColor clearColor];
-    label.text=@"Patient Education Program"; //CUSTOM TITLE
-    [label sizeToFit];
+//     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,300,45)];
+//    label.textColor = [UIColor grayColor];
+//    label.backgroundColor=[UIColor clearColor];
+//    label.text=@"";   //CUSTOM TITLE
+//    [label sizeToFit];
     
-    self.titleLAbel = [[UIBarButtonItem alloc] initWithCustomView:label];
+    
+    
+    self.biggerSpacer = [[UIBarButtonItem alloc]
+                         initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                         target:nil
+                         action:nil];
+    self.biggerSpacer.width=200;
     
     self.spacer = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
@@ -174,18 +180,18 @@
     self.bigspacer.width=40;
    
     UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *shareBtnImage = [UIImage imageNamed:@"share.png"];
+    UIImage *shareBtnImage = [UIImage imageNamed:@"share12.png"];
     [shareBtn setBackgroundImage:shareBtnImage forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
-    [shareBtn setFrame:CGRectMake(0, 0, 60, 30)];
+    [shareBtn setFrame:CGRectMake(0, 0, 30, 30)];
     self.share = [[UIBarButtonItem alloc] initWithCustomView:shareBtn];
     
     UIButton *settingBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage *backBtnImage = [UIImage imageNamed:@"setting.png"];
-        [settingBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
-        [settingBtn addTarget:self action:@selector(settingAction) forControlEvents:UIControlEventTouchUpInside];
-        settingBtn.frame = CGRectMake(0, 0, 33, 29);
-     self.setting = [[UIBarButtonItem alloc] initWithCustomView:settingBtn];
+    UIImage *backBtnImage = [UIImage imageNamed:@"settings.png"];
+    [settingBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
+    [settingBtn addTarget:self action:@selector(settingAction) forControlEvents:UIControlEventTouchUpInside];
+    settingBtn.frame = CGRectMake(0, 0, 33, 29);
+    self.setting = [[UIBarButtonItem alloc] initWithCustomView:settingBtn];
 
     
     UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -199,39 +205,36 @@
     //[buttons addObject:content];
     
     UIButton *bookmarkBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *bookmarkBtnImage = [UIImage imageNamed:@"bookmark1.png"];
+    UIImage *bookmarkBtnImage = [UIImage imageNamed:@"bookmark.png"];
     [bookmarkBtn setBackgroundImage:bookmarkBtnImage forState:UIControlStateNormal];
     [bookmarkBtn addTarget:self action:@selector(bookmarkAction) forControlEvents:UIControlEventTouchUpInside];
     bookmarkBtn.frame = CGRectMake(0, 0, 32,25 );
     self.bookmark = [[UIBarButtonItem alloc] initWithCustomView:bookmarkBtn];
-    //[buttons addObject:bookmark];
     
     
-    //[tools addSubview:bookmarkBtn];
     self.searchBar=[[UISearchBar alloc] init];
     [self.searchBar setFrame:CGRectMake(775,10,220,25)];
     self.searchBar.delegate=self;
      self.search = [[UIBarButtonItem alloc] initWithCustomView:self.searchBar];
-    //[tools addSubview:searchbar];
     
     UIButton *helpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *helpBtnImage = [UIImage imageNamed:@"help1.png"];
+    UIImage *helpBtnImage = [UIImage imageNamed:@"help.png"];
 
     [helpBtn setBackgroundImage:helpBtnImage forState:UIControlStateNormal];
     [helpBtn addTarget:self action:@selector(helpAction) forControlEvents:UIControlEventTouchUpInside];
     helpBtn.frame = CGRectMake(0, 0, 30, 30);
-   // [tools addSubview:helpBtn];
     self.help = [[UIBarButtonItem alloc] initWithCustomView:helpBtn];
-   // [buttons addObject:help];
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+    [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer, self.share,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     
   UIBarButtonItem *custom = [[UIBarButtonItem alloc] initWithCustomView:self.tools];
-    //[self.navigationController.navigationBar addSubview:tools];
     
     self.navigationItem.leftBarButtonItem = custom;
     
-    self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
+    //self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
+    
+    self.navigationController.navigationBar.tintColor=[UIColor lightGrayColor];
+
     [self changeButtonsOnTabChange:0];
     
 #ifdef PSPDFCatalog
@@ -306,9 +309,31 @@
 
 - (void) changeButtonsOnTabChange:(int) tabId{
     if (tabId == 0) {
-        [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.bigspacer,  self.bigspacer,self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+        
+        if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            //other codes
+            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        }
+        
+        else {
+            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+            //other codes
+        }
+        
     } else {
-        [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share, self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+        
+        
+        if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            //other codes
+            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            
+        }
+        
+        else {
+            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+            //other codes
+        }
+        
     }
 }
 
@@ -420,7 +445,7 @@
     self.clearPressed=YES;
     [self.sharePdfArray removeAllObjects];
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share, self.spacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+    [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.bigspacer, self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     
     //[self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
     
@@ -1252,7 +1277,7 @@ return (UICollectionViewCell *)cell;
         
     self.longPressed=YES;
         
-     [self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list, self.segment, self.spacer, self.share,self.clear, self.spacer,self.titleLAbel,self.spacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+     [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer, self.share,self.clear, self.spacer,self.bigspacer, self.biggerSpacer,self.spacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
       
         
              
@@ -1306,30 +1331,37 @@ return (UICollectionViewCell *)cell;
 			message = @"Mail: sent";
             
             [self.sharePdfArray removeAllObjects];
-            self.longPressed=NO;
-            //[PSCStoreManager sharedStoreManager].delegate = self;
+            [ self clearAction];
+            //[self changeButtonsOnTabChange:1];
+//            self.longPressed=NO;
+//            //[PSCStoreManager sharedStoreManager].delegate = self;
+//            
+//            // Ensure everything is up to date (we could change magazines in other controllers)
+//            self.immediatelyLoadCellImages = YES;
+//            [self diskDataLoaded]; // also reloads the grid
+//            self.immediatelyLoadCellImages = NO;
+//            
+//            if (_animateViewWillAppearWithFade) {
+//                [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+//                _animateViewWillAppearWithFade = NO;
+//            }
+//            
+//            [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
+//
+//            [self updateGrid];
             
-            // Ensure everything is up to date (we could change magazines in other controllers)
-            self.immediatelyLoadCellImages = YES;
-            [self diskDataLoaded]; // also reloads the grid
-            self.immediatelyLoadCellImages = NO;
-            
-            if (_animateViewWillAppearWithFade) {
-                [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
-                _animateViewWillAppearWithFade = NO;
-            }
-            
-            [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
-
-            [self updateGrid];
-            [self changeButtonsOnTabChange:1];
+           
 
 			break;
 		case MFMailComposeResultFailed:
 			message = @"Mail: failed";
+            [self.sharePdfArray removeAllObjects];
+            [ self clearAction];
 			break;
 		default:
 			message = @"Mail: not sent";
+            [self.sharePdfArray removeAllObjects];
+            [ self clearAction];
 			break;
 	}
     [self dismissViewControllerAnimated:YES completion:nil];
