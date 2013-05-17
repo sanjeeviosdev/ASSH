@@ -460,6 +460,12 @@ if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue])
             //self.title = [NSString stringWithFormat:@"%@ (%@)", document.title, [document.fileURL lastPathComponent]];
             self.title = [NSString stringWithFormat:@"%@", [[document.fileURL lastPathComponent] stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
         }
+        // Remove the unwanted "zzz" from the title which was appended earlier for showing some pdfs at end
+        if ([self.title rangeOfString:@"zzz"].location != NSNotFound) {
+            NSMutableString *title = [self.title mutableCopy];
+            [title replaceOccurrencesOfString:@"zzz" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, title.length)];
+            self.title = title;
+        }
     }
 }
 
