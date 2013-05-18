@@ -34,6 +34,7 @@
 // The delete button target is small enough that we don't need to ask for confirmation.
 #define kPSPDFShouldShowDeleteConfirmationDialog NO
 
+
 @interface PSCGridController() <UISearchBarDelegate> {
     NSArray *_filteredData;
     NSUInteger _animationCellIndex;
@@ -91,6 +92,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
    // _searchBar.delegate = nil;
 }
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIViewController
@@ -225,7 +228,7 @@
     helpBtn.frame = CGRectMake(0, 0, 30, 30);
     self.help = [[UIBarButtonItem alloc] initWithCustomView:helpBtn];
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer, self.share,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+    [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
     
   UIBarButtonItem *custom = [[UIBarButtonItem alloc] initWithCustomView:self.tools];
     
@@ -312,11 +315,12 @@
         
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
         }
         
         else {
-            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+            
+                       [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
             //other codes
         }
         
@@ -325,12 +329,27 @@
         
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            
+             if (self.longPressed==YES)
+             {
+                 [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+             }
+            else
+            {
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            }
             
         }
         
         else {
-            [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+            if (self.longPressed==YES) {
+                [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+
+                
+            }
+            else
+
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
             //other codes
         }
         
@@ -444,12 +463,17 @@
 
     self.clearPressed=YES;
     [self.sharePdfArray removeAllObjects];
+     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+         
+           [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+         }
+         else
+         {
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.bigspacer, self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
-    
-    //[self.tools setItems:[NSArray arrayWithObjects: self.spacer,self.list,self.spacer, self.segment, self.spacer, self.share,self.bigspacer,self.titleLAbel,self.bigspacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
-    
-
+          [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.bigspacer, self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+         }
+     
+   
     
     // Ensure everything is up to date (we could change magazines in other controllers)
     self.immediatelyLoadCellImages = YES;
@@ -844,110 +868,6 @@
 }
 
 
-/*
-// Open magazine with a nice animation.
-- (BOOL)openMagazine:(PSCMagazine *)oldMagazine animated:(BOOL)animated cellIndex:(NSUInteger)cellIndex {
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
-    NSString *tempName = [NSString stringWithFormat:@"temp_%@",[oldMagazine.files lastObject]];
-    documentDBFolderPath =[documentDBFolderPath stringByAppendingPathComponent:tempName];
-    NSURL *destFileURL = [NSURL URLWithString:[documentDBFolderPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    //[destFileURL URLByAppendingPathComponent:@"temp.pdf"];
-    
-    NSString *resourceDBFolderPath = [[oldMagazine.basePath URLByAppendingPathComponent:[oldMagazine.files lastObject]] path];
-   // NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
-    //resourceDBFolderPath=[resourceDBFolderPath stringByAppendingPathComponent:tempName];
-    
-    [fileManager copyItemAtPath:resourceDBFolderPath toPath:[destFileURL path] error:&error];
-    
-    //PSCMagazine *magazine = [[PSCMagazine alloc] initWithData:[NSData dataWithContentsOfFile:[destFileURL path]]];
-   // magazine.title = oldMagazine.fileName;
-    PSCMagazine *magazine = [[PSCMagazine alloc] initWithURL:destFileURL];
-    magazine.title = oldMagazine.fileName;
-    self.lastOpenedMagazine = magazine;
-   // [self.searchBar resignFirstResponder];
-    magazine.overrideClassNames = @{(id)[PSPDFBookmarkParser class] : [PSCBookmarkParser class]};
-
-
-    // Speed up displaying with parsing several things PSPDFViewController needs.
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [magazine fillCache];
-    });
-
-    PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
-
-
-    // Try to get full-size image, if that fails try thumbnail.
-    UIImage *coverImage = [self imageForMagazine:magazine];
-    if (animated && coverImage && !magazine.isLocked) {
-        PSUICollectionViewCell *cell = (PSUICollectionViewCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:cellIndex inSection:0]];
-        cell.hidden = YES;
-        CGRect cellCoords = [self.collectionView convertRect:cell.frame toView:self.view];
-        UIImageView *coverImageView = [[UIImageView alloc] initWithImage:coverImage];
-        
-        
-        coverImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        coverImageView.frame = cellCoords;
-        
-        
-
-        coverImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self.view addSubview:coverImageView];
-        self.magazineView = coverImageView;
-        _animationCellIndex = cellIndex;
-
-        // Add a smooth status bar transition on the iPhone
-        if (!PSIsIpad()) {
-            [UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-        }
-
-        // If we have a different page, fade to that page.
-        UIImageView *targetPageImageView = nil;
-        if (pdfController.page != 0 && !pdfController.isDoublePageMode) {
-            UIImage *targetPageImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:pdfController.page withSize:UIScreen.mainScreen.bounds.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip|PSPDFCacheOptionMemoryStoreAlways];
-            if (targetPageImage) {
-                targetPageImageView = [[UIImageView alloc] initWithImage:targetPageImage];
-                targetPageImageView.frame = self.magazineView.bounds;
-                targetPageImageView.contentMode = UIViewContentModeScaleAspectFit;
-                targetPageImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-                targetPageImageView.alpha = 0.f;
-                [self.magazineView addSubview:targetPageImageView];
-            }
-        }
-
-        [UIView animateWithDuration:0.3f delay:0.f options:0 animations:^{
-            self.navigationController.navigationBar.alpha = 0.f;
-            _shadowView.shadowEnabled = NO;
-            self.collectionView.transform = CGAffineTransformMakeScale(0.97, 0.97);
-
-            _animationDoubleWithPageCurl = pdfController.pageTransition == PSPDFPageCurlTransition && [pdfController isDoublePageMode];
-            CGRect newFrame = [self magazinePageCoordinatesWithDoublePageCurl:_animationDoubleWithPageCurl];
-            coverImageView.frame = newFrame;
-            targetPageImageView.alpha = 1.f;
-
-            self.collectionView.alpha = 0.0f;
-
-        } completion:^(BOOL finished) {
-            [self.navigationController.navigationBar.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
-            [self.navigationController pushViewController:pdfController animated:NO];
-
-            cell.hidden = NO;
-        }];
-    }else {
-        if (animated) {
-            // Add fake data so that we animate back.
-            _animateViewWillAppearWithFade = YES;
-            [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
-        }
-        [self.navigationController pushViewController:pdfController animated:NO];
-    }
-
-    return YES;
-}
-*/
 
 
 // Open magazine with a nice animation.
@@ -1276,8 +1196,15 @@ return (UICollectionViewCell *)cell;
         [self updateGrid];
         
     self.longPressed=YES;
+         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+         {
+              [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+             
+         }
+         else{
         
-     [self.tools setItems:[NSArray arrayWithObjects: self.spacer, self.segment, self.spacer,self.list,self.spacer, self.share,self.clear, self.spacer,self.bigspacer, self.biggerSpacer,self.spacer,self.bookmark,self.spacer,self.setting,self.spacer,self.search,self.spacer,self.help ,nil] animated:NO];
+     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer, self.biggerSpacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+         }
       
         
              
@@ -1649,6 +1576,77 @@ return (UICollectionViewCell *)cell;
     [searchBar resignFirstResponder];
 }
 
+
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return YES;
+}
+
+- (BOOL)shouldAutorotate  // iOS 6 autorotation fix
+{
+    
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations // iOS 6 autorotation fix
+{
+    
+    [ self orientation];
+    return UIInterfaceOrientationMaskAll;
+}
+
+//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation // iOS 6 autorotation fix
+//{
+//    return UIInterfaceOrientationPortrait;
+//}
+
+
+-(void)orientation
+{
+    
+    if (![UIAPPDelegate isMyTopic]) {
+    
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        //other codes
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+    }
+    
+    else {
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        //other codes
+    }
+    
+} else {
+    if (self.longPressed==YES) {
+        if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+            //other codes
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            
+        }
+        
+        else {
+            [self.tools setItems:[NSArray arrayWithObjects:  self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.clear,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            //other codes
+        }
+    }
+    else{
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
+        //other codes
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        
+    }
+    
+    else {
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        //other codes
+    }
+    }
+}
+
+}
+
 @end
 
 // Fixes the missing action method crash on updating when the keyboard is visible.
@@ -1667,4 +1665,5 @@ __attribute__((constructor)) static void PSPDFFixCollectionViewUpdateItemWhenKey
         }
     }
 }
+
 

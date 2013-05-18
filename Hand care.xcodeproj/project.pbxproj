@@ -128,6 +128,7 @@
 		A1B00B3A1734342C00E94261 /* top bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A1B00B391734342C00E94261 /* top bar.png */; };
 		A1B00B3C173437A000E94261 /* share12.png in Resources */ = {isa = PBXBuildFile; fileRef = A1B00B3B1734379F00E94261 /* share12.png */; };
 		A1BF1BD61719C7DF007AD3EE /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BF1BD51719C7DE007AD3EE /* clear.png */; };
+		A1BF1C241746B4BB001CB67F /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BF1C231746B4BB001CB67F /* CustomNavigationController.m */; };
 		A1C224171709DF58002FF817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C224161709DF58002FF817 /* UIKit.framework */; };
 		A1C224191709DF58002FF817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C224181709DF58002FF817 /* Foundation.framework */; };
 		A1C2241B1709DF58002FF817 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C2241A1709DF58002FF817 /* CoreGraphics.framework */; };
@@ -329,6 +330,8 @@
 		A1B00B391734342C00E94261 /* top bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top bar.png"; sourceTree = "<group>"; };
 		A1B00B3B1734379F00E94261 /* share12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share12.png; sourceTree = "<group>"; };
 		A1BF1BD51719C7DE007AD3EE /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
+		A1BF1C221746B4BB001CB67F /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
+		A1BF1C231746B4BB001CB67F /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
 		A1C224131709DF58002FF817 /* Hand care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hand care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C224161709DF58002FF817 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A1C224181709DF58002FF817 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -718,6 +721,8 @@
 				A1F58E4C170CA68D00377A4B /* ASSHViewController.h */,
 				A1DFAE6C173E2B86001AB599 /* ASSHViewController.m */,
 				A1F58E4E170CA68D00377A4B /* ASSHViewController.xib */,
+				A1BF1C221746B4BB001CB67F /* CustomNavigationController.h */,
+				A1BF1C231746B4BB001CB67F /* CustomNavigationController.m */,
 				A1C2241D1709DF58002FF817 /* Supporting Files */,
 			);
 			path = ASSH;
@@ -1033,6 +1038,7 @@
 				A1E6D1721743E93700C26790 /* HelpPageViewController.m in Sources */,
 				A1E6D1911744303200C26790 /* MBProgressHUD.m in Sources */,
 				A1E6D1921744303200C26790 /* UIImage+File.m in Sources */,
+				A1BF1C241746B4BB001CB67F /* CustomNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,8 +1069,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1080,8 +1086,8 @@
 				HEADER_SEARCH_PATHS = PSPDFKit;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
+				PROVISIONING_PROFILE = "B57FB121-A47C-49EB-9F6E-C1007875189A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B57FB121-A47C-49EB-9F6E-C1007875189A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = PSPDFKit;
@@ -1102,8 +1108,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1112,8 +1118,8 @@
 				HEADER_SEARCH_PATHS = PSPDFKit;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
+				PROVISIONING_PROFILE = "B57FB121-A47C-49EB-9F6E-C1007875189A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B57FB121-A47C-49EB-9F6E-C1007875189A";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				USER_HEADER_SEARCH_PATHS = PSPDFKit;
@@ -1126,8 +1132,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90012B33173A5EDA002D3632 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PSPDFKit.embeddedframework\"",
@@ -1139,8 +1145,8 @@
 				INFOPLIST_FILE = "ASSH/Hand care-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Hand care";
-				PROVISIONING_PROFILE = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
+				PROVISIONING_PROFILE = "B57FB121-A47C-49EB-9F6E-C1007875189A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B57FB121-A47C-49EB-9F6E-C1007875189A";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1150,8 +1156,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 90012B33173A5EDA002D3632 /* PSPDFKit.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abhinav Kumar (4BAM5BY7QY)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jessica Daniels (8KNLU67CP3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PSPDFKit.embeddedframework\"",
@@ -1163,8 +1169,8 @@
 				INFOPLIST_FILE = "ASSH/Hand care-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "Hand care";
-				PROVISIONING_PROFILE = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75B4AFA6-BB97-4AFF-9456-786A27A87CB4";
+				PROVISIONING_PROFILE = "B57FB121-A47C-49EB-9F6E-C1007875189A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B57FB121-A47C-49EB-9F6E-C1007875189A";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

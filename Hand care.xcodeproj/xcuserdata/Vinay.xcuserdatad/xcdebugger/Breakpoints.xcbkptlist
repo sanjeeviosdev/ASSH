@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCKioskPDFViewController.m"
-         timestampString = "390346271.162963"
+         timestampString = "390517865.808749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "823"
-         endingLineNumber = "823"
+         startingLineNumber = "828"
+         endingLineNumber = "828"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCKioskPDFViewController.m"
-         timestampString = "390346271.162963"
+         timestampString = "390517865.808749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "813"
-         endingLineNumber = "813"
+         startingLineNumber = "818"
+         endingLineNumber = "818"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCKioskPDFViewController.m"
-         timestampString = "390346271.162963"
+         timestampString = "390517865.808749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "747"
-         endingLineNumber = "747"
+         startingLineNumber = "752"
+         endingLineNumber = "752"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCKioskPDFViewController.m"
-         timestampString = "390345201.942016"
+         timestampString = "390517865.808749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "730"
-         endingLineNumber = "730"
+         startingLineNumber = "735"
+         endingLineNumber = "735"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCKioskPDFViewController.m"
-         timestampString = "390346271.162963"
+         timestampString = "390517865.808749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "771"
-         endingLineNumber = "771"
+         startingLineNumber = "776"
+         endingLineNumber = "776"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCKioskPDFViewController.m"
-         timestampString = "390346271.162963"
+         timestampString = "390517865.808749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "772"
-         endingLineNumber = "772"
+         startingLineNumber = "777"
+         endingLineNumber = "777"
          landmarkName = "-alertView:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -98,26 +98,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "ASSH/ASSHAppDelegate.m"
-         timestampString = "390348020.696072"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "83"
-         endingLineNumber = "83"
-         landmarkName = "-application:didFinishLaunchingWithOptions:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "ASSH/Kiosk/PSCGridController.m"
-         timestampString = "390411598.455205"
+         timestampString = "390513451.061562"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "316"
-         endingLineNumber = "316"
-         landmarkName = "-changeButtonsOnTabChange:"
+         startingLineNumber = "466"
+         endingLineNumber = "466"
+         landmarkName = "-clearAction"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

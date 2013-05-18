@@ -310,10 +310,16 @@
 // This is to present the most common features of PSPDFKit.
 // iOS is all about choosing the right options for the user. You really shouldn't ship that.
 - (void)globalVarChanged {
+    
+    [self setToolbarEnabled:NO];
+    self.statusBarStyleSetting = PSPDFStatusBarBlackOpaque;
+    self.renderAnimationEnabled = NO;
     // Preserve viewState, but only page, not contentOffset. (since we can change fitToWidth etc here)
     PSPDFViewState *viewState = [self viewState];
     viewState.zoomScale = 1;
     viewState.contentOffset = CGPointMake(0, 0);
+    
+    
 
     NSMutableDictionary *renderOptions = [self.document.renderOptions mutableCopy] ?: [NSMutableDictionary dictionary];
     NSDictionary *settings = [PSCSettingsController settings];
@@ -364,11 +370,9 @@
     
     self.shareBarbuttonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
     
-    //if ([settings[NSStringFromSelector(@selector(shareButtonItem))] boolValue]){
         
         [rightBarButtonItems addObject:self.shareBarbuttonItem];
         
-   // }
    
     
 if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
@@ -379,60 +383,61 @@ if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue])
             [rightBarButtonItems addObject:self.outlineButtonItem];
              self.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObject:@(PSPDFOutlineBarButtonItemOptionAnnotations)];
         }
-//        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
-//            [rightBarButtonItems addObject:self.searchButtonItem];
-//        }
+
         if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
             [rightBarButtonItems addObject:self.bookmarkButtonItem];
         }
     }
-//    if ([settings[NSStringFromSelector(@selector(brightnessButtonItem))] boolValue]) {
-//        [rightBarButtonItems addObject:self.brightnessButtonItem];
+    
+    
+    self.navigationItem.rightBarButtonItems = @[self.shareBarbuttonItem, self.outlineButtonItem, self.annotationButtonItem, self.bookmarkButtonItem,];
+    
+    // UIBarButtons are defaulted to be plain in PSPDFKit. Iterate and update them to improve image rendering and positioning in bordered.
+    for (UIBarButtonItem *barButton in self.navigationItem.rightBarButtonItems) {
+        barButton.style = UIBarButtonItemStyleBordered;
+    }
+    
+    self.delegate = self;
+  //self.rightBarButtonItems = rightBarButtonItems;
+
+//    // Define additional buttons with an action icon.
+//    NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
+//    if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
+//        [additionalRightBarButtonItems addObject:self.printButtonItem];
 //    }
-
-//    if ([settings[NSStringFromSelector(@selector(viewModeButtonItem))] boolValue]) {
-//        [rightBarButtonItems addObject:self.viewModeButtonItem];
+//    if ([settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue]) {
+//        [additionalRightBarButtonItems addObject:self.openInButtonItem];
 //    }
-    self.rightBarButtonItems = rightBarButtonItems;
-
-    // Define additional buttons with an action icon.
-    NSMutableArray *additionalRightBarButtonItems = [NSMutableArray array];
-    if ([settings[NSStringFromSelector(@selector(printButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.printButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(openInButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.openInButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.emailButtonItem];
-    }
-    if ([settings[NSStringFromSelector(@selector(activityButtonItem))] boolValue]) {
-        [additionalRightBarButtonItems addObject:self.activityButtonItem];
-    }
-
-    if (!PSIsIpad()) {
-        
-        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
-            
-            [additionalRightBarButtonItems addObject:self.outlineButtonItem];
-        }
-        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.searchButtonItem];
-        }
-        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
-            [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
-        }
-    }
-
-#ifdef kPSPDFEnableAllBarButtonItems
-    [rightBarButtonItems addObjectsFromArray:additionalRightBarButtonItems];
-    self.rightBarButtonItems = rightBarButtonItems;
-#endif
-
-#ifdef PSPDFCatalog
-    [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
-    self.additionalBarButtonItems = additionalRightBarButtonItems;
-#endif
+//    if ([settings[NSStringFromSelector(@selector(emailButtonItem))] boolValue]) {
+//        [additionalRightBarButtonItems addObject:self.emailButtonItem];
+//    }
+//    if ([settings[NSStringFromSelector(@selector(activityButtonItem))] boolValue]) {
+//        [additionalRightBarButtonItems addObject:self.activityButtonItem];
+//    }
+//
+//    if (!PSIsIpad()) {
+//        
+//        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
+//            
+//            [additionalRightBarButtonItems addObject:self.outlineButtonItem];
+//        }
+//        if ([settings[NSStringFromSelector(@selector(searchButtonItem))] boolValue]) {
+//            [additionalRightBarButtonItems addObject:self.searchButtonItem];
+//        }
+//        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
+//            [additionalRightBarButtonItems addObject:self.bookmarkButtonItem];
+//        }
+//    }
+//
+//#ifdef kPSPDFEnableAllBarButtonItems
+//    [rightBarButtonItems addObjectsFromArray:additionalRightBarButtonItems];
+//    self.rightBarButtonItems = rightBarButtonItems;
+//#endif
+//
+//#ifdef PSPDFCatalog
+//    [additionalRightBarButtonItems addObject:[[PSCGoToPageButtonItem alloc] initWithPDFViewController:self]];
+//    self.additionalBarButtonItems = additionalRightBarButtonItems;
+//#endif
 
     // reload scroll view and restore viewState
     [self reloadData];

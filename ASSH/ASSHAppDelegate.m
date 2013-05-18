@@ -10,6 +10,7 @@
 #import "PSCGridController.h"
 #import "ASSHViewController.h"
 #import "MyTopics.h"
+#import "CustomNavigationController.h"
 
 @implementation ASSHAppDelegate
 @synthesize navigationController;
@@ -93,15 +94,17 @@
         
     }
     
-   
-    
+    PSCGridController *gridController = [[PSCGridController alloc] init];
+    navigationController = [[CustomNavigationController alloc]
+                            initWithRootViewController:gridController]; // iOS 6 autorotation fix
+    [navigationController setNavigationBarHidden:YES animated:NO];
     
    self.navigationController.navigationBarHidden=YES;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
     
-    PSCGridController *gridController = [[PSCGridController alloc] init];
+   
 
-    self.navigationController=[[UINavigationController alloc] initWithRootViewController:gridController];
+   // self.navigationController=[[UINavigationController alloc] initWithRootViewController:gridController];
     
     self.window.rootViewController = self.navigationController;
     
