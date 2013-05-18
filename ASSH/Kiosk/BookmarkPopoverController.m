@@ -192,6 +192,11 @@
          self.bookmarkArray=  [UIAPPDelegate fetchBookmarks];
          // reload table
          [self.bookmarkTable reloadData];
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadGrid"
+                                                         object:nil
+                                                       userInfo:nil];
+     
+     
  }
  else if (editingStyle == UITableViewCellEditingStyleInsert) {
  // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

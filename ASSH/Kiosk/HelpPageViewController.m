@@ -14,6 +14,7 @@ static NSArray *__pageControlColorList = nil;
 
 @implementation HelpPageViewController
 @synthesize pageNumberLabel;
+@synthesize screensArray;
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -49,10 +50,11 @@ static NSArray *__pageControlColorList = nil;
 // Set the label and background color when the view has finished loading.
 - (void)viewDidLoad {
     
-    self.screensArray=[[NSArray alloc] initWithObjects:@"s1.tiff",@"2.tiff",@"3.tiff",@"4.tiff",@"5.tiff",@"6.tiff",@"7.tiff", nil];
+    self.screensArray=[[NSArray alloc] initWithObjects:@"1.tiff",@"2.tiff",@"3.tiff",@"4.tiff",@"5.tiff",@"6.tiff",@"7.tiff", nil];
    // pageNumberLabel.text = [NSString stringWithFormat:@"Page %d", pageNumber + 1];
-    screenImageView.image=[UIImage imageNamed:[self.screensArray objectAtIndex:pageNumber+1]];
+    screenImageView.image=[UIImage imageNamed:[self.screensArray objectAtIndex:pageNumber]];
    // self.view.backgroundColor = [HelpPageViewController pageControlColorWithIndex:pageNumber];
+    
 }
 
 

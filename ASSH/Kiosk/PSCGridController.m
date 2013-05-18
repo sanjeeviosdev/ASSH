@@ -123,6 +123,10 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadGrid)
+                                                 name:@"reloadGrid"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cancel)
                                                  name:@"cancelpopover"
                                                object:nil];
@@ -221,17 +225,19 @@
     self.searchBar=[[UISearchBar alloc] init];
     [self.searchBar setFrame:CGRectMake(775,10,220,25)];
     self.searchBar.delegate=self;
+    self.searchBar.userInteractionEnabled=YES;
      self.search = [[UIBarButtonItem alloc] initWithCustomView:self.searchBar];
     
     UIButton *helpBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     UIImage *helpBtnImage = [UIImage imageNamed:@"help.png"];
+    helpBtn.userInteractionEnabled=YES;
 
     [helpBtn setBackgroundImage:helpBtnImage forState:UIControlStateNormal];
-    [helpBtn addTarget:self action:@selector(helpAction) forControlEvents:UIControlEventTouchUpInside];
-    helpBtn.frame = CGRectMake(0, 0, 30, 30);
+    [helpBtn addTarget:self action:@selector(helpBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    helpBtn.frame = CGRectMake(0, 0, 25, 25);
     self.help = [[UIBarButtonItem alloc] initWithCustomView:helpBtn];
     
-    [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+    [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.spacer,self.bigspacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
     
   UIBarButtonItem *custom = [[UIBarButtonItem alloc] initWithCustomView:self.tools];
     
@@ -294,7 +300,7 @@
    // UIImage *linkBtnImage = [UIImage imageNamed:@"top bar.png"];
     
     //[linkButton setBackgroundImage:linkBtnImage forState:UIControlStateNormal];
-    [self.linkButton setTitle:@"open url link" forState:UIControlStateNormal];
+    [self.linkButton setTitle:@"Tap to Find a Hand Surgeon in your area." forState:UIControlStateNormal];
     [self.linkButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
     self.linkButton.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     self.link = [[UIBarButtonItem alloc] initWithCustomView:self.linkButton];
@@ -317,6 +323,7 @@
 
     // Set the return key and keyboard appearance of the search bar.
     // Since we do live-filtering, the search bar should just dismiss the keyboard.
+    
     for (UITextField *searchBarTextField in [_searchBar subviews]) {
         if ([searchBarTextField conformsToProtocol:@protocol(UITextInputTraits)]) {
             @try {
@@ -335,7 +342,7 @@
 -(void)openLinkAction
 {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.google.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.assh.org/Public/Pages/HandSurgeons.aspx"]];
 }
 
 - (void) changeButtonsOnTabChange:(int) tabId{
@@ -343,12 +350,12 @@
         
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         }
         
         else {
             
-                       [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+                       [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             //other codes
         }
         
@@ -360,24 +367,24 @@
             
              if (self.longPressed==YES)
              {
-                 [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+                 [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
              }
             else
             {
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             }
             
         }
         
         else {
             if (self.longPressed==YES) {
-                [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+                [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
 
                 
             }
             else
 
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             //other codes
         }
         
@@ -493,12 +500,12 @@
     [self.sharePdfArray removeAllObjects];
      if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
          
-           [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+           [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
          }
          else
          {
     
-          [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.bigspacer, self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+          [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer, self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
          }
      
    
@@ -528,7 +535,17 @@
         //[popoverController setDelegate:self];
         [popoverController setPopoverContentSize:CGSizeMake(360.0f, 500.0f)];
         if (self.view.window != nil)
-            [popoverController presentPopoverFromRect:CGRectMake(600, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        {
+            
+            if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+            {
+                [popoverController presentPopoverFromRect:CGRectMake(375, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            }
+                 else
+                 {
+            [popoverController presentPopoverFromRect:CGRectMake(615, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+                 }
+        }
         
     }else {
         [popoverController dismissPopoverAnimated:YES];
@@ -539,15 +556,26 @@
     
     
 }
--(void)helpAction
+-(void)helpBtnAction
 {
     if(![popoverController isPopoverVisible]){
     helpPopOver = [[HelpPopoverController alloc] initWithNibName:@"HelpPopoverController" bundle:nil];
     popoverController = [[UIPopoverController alloc] initWithContentViewController:helpPopOver];
     //[popoverController setDelegate:self];
-    [popoverController setPopoverContentSize:CGSizeMake(328.0f, 433.0f)];
+    [popoverController setPopoverContentSize:CGSizeMake(589.0f, 493.0f)];
     if (self.view.window != nil)
-        [popoverController presentPopoverFromRect:CGRectMake(900, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    {
+        
+        if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+        {
+        
+        [popoverController presentPopoverFromRect:CGRectMake(660, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        }
+        else
+        {
+          [popoverController presentPopoverFromRect:CGRectMake(900, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];  
+        }
+    }
     
 }else{
     [popoverController dismissPopoverAnimated:YES];
@@ -565,7 +593,18 @@
 		//[popoverController setDelegate:self];
 		[popoverController setPopoverContentSize:CGSizeMake(350.0f, 150.0f)];
         if (self.view.window != nil)
-            [popoverController presentPopoverFromRect:CGRectMake(630, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            
+        {
+            
+            if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+            {
+            [popoverController presentPopoverFromRect:CGRectMake(415, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            }
+            else
+            {
+                [popoverController presentPopoverFromRect:CGRectMake(655, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            }
+        }
 		
 	}else{
 		[popoverController dismissPopoverAnimated:YES];
@@ -576,6 +615,32 @@
 -(void)cancel
 {
     [popoverController dismissPopoverAnimated:YES];
+ 
+}
+-(void)reloadGrid
+{
+    
+    self.markedTopics = [UIAPPDelegate fetchBookmarks];
+
+    [popoverController dismissPopoverAnimated:YES];
+
+    [[PSCStoreManager sharedStoreManager] loadMagazinesFromDisk];
+    
+    [PSCStoreManager sharedStoreManager].delegate = self;
+    
+    // Ensure everything is up to date (we could change magazines in other controllers)
+    self.immediatelyLoadCellImages = YES;
+    [self diskDataLoaded]; // also reloads the grid
+    self.immediatelyLoadCellImages = NO;
+    
+    if (_animateViewWillAppearWithFade) {
+        [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
+        _animateViewWillAppearWithFade = NO;
+    }
+    
+    [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
+    
+    [ self updateGrid ];
  
 }
 
@@ -1226,12 +1291,12 @@ return (UICollectionViewCell *)cell;
     self.longPressed=YES;
          if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
          {
-              [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+              [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
              
          }
          else{
         
-     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer, self.biggerSpacer,self.spacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.bigspacer, self.biggerSpacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
          }
       
         
@@ -1638,13 +1703,13 @@ return (UICollectionViewCell *)cell;
     
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         //other codes
-        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         
         
     }
     
     else {
-        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         //other codes
     }
     
@@ -1652,24 +1717,24 @@ return (UICollectionViewCell *)cell;
     if (self.longPressed==YES) {
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.spacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             
         }
         
         else {
-            [self.tools setItems:[NSArray arrayWithObjects:  self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.clear,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects:  self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.clear,self.spacer,self.spacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             //other codes
         }
     }
     else{
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         //other codes
-        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         
     }
     
     else {
-        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         //other codes
     }
     }

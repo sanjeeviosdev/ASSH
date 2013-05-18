@@ -17,8 +17,8 @@
    IBOutlet UIImageView *screenImageView;
 }
 
-@property (nonatomic, retain) UILabel *pageNumberLabel;
-@property (nonatomic, retain) NSArray *screensArray;
+@property (nonatomic, strong) UILabel *pageNumberLabel;
+@property (nonatomic, strong) NSArray *screensArray;
 
 
 - (id)initWithPageNumber:(int)page;

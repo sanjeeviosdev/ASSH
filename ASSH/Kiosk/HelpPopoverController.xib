@@ -39,10 +39,9 @@
 					<object class="IBUIScrollView" id="504310370">
 						<reference key="NSNextResponder" ref="387751871"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{1, -23}, {328, 426}}</string>
+						<string key="NSFrame">{{0, -23}, {589, 477}}</string>
 						<reference key="NSSuperview" ref="387751871"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -52,7 +51,7 @@
 						<reference key="NSNextResponder" ref="387751871"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{0, 401}, {328, 36}}</string>
+						<string key="NSFrame">{{0, 455}, {589, 36}}</string>
 						<reference key="NSSuperview" ref="387751871"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="504310370"/>
@@ -69,7 +68,7 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{328, 433}</string>
+				<string key="NSFrameSize">{589, 493}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="737055268"/>
@@ -185,7 +184,6 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="pageControl">UIPageControl</string>
 						<string key="scrollView">UIScrollView</string>
-						<string key="window">UIWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="pageControl">
@@ -195,10 +193,6 @@
 						<object class="IBToOneOutletInfo" key="scrollView">
 							<string key="name">scrollView</string>
 							<string key="candidateClassName">UIScrollView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="window">
-							<string key="name">window</string>
-							<string key="candidateClassName">UIWindow</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

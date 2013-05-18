@@ -36,7 +36,7 @@
 
 @property (nonatomic, strong) MypopoverView *myPopOver;
 @property (nonatomic, strong) HelpPopoverController *helpPopOver;
-@property (nonatomic, strong) NSMutableArray *markedTopics;
+@property (nonatomic, strong) NSArray *markedTopics;
 @property (nonatomic, strong) NSMutableArray *markedMags;
 @property(nonatomic,strong)UIToolbar *tools;
 @property(nonatomic,strong)UIToolbar *bottomToolbar;
