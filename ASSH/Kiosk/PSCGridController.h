@@ -39,6 +39,7 @@
 @property (nonatomic, strong) NSMutableArray *markedTopics;
 @property (nonatomic, strong) NSMutableArray *markedMags;
 @property(nonatomic,strong)UIToolbar *tools;
+@property(nonatomic,strong)UIToolbar *bottomToolbar;
 @property(nonatomic,strong)UIBarButtonItem *segment;
 @property(nonatomic,strong)UIBarButtonItem *biggerSpacer;
 @property(nonatomic,strong)UIBarButtonItem *spacer;
@@ -51,6 +52,9 @@
 @property(nonatomic,strong)UIBarButtonItem *clear;
 @property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UIBarButtonItem *list;
+@property(nonatomic,strong)UIBarButtonItem *link;
+@property(nonatomic,strong)UIButton *linkButton;
+
 @property(nonatomic,strong) UILongPressGestureRecognizer *longPress;
 
 

@@ -100,6 +100,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+       
+    
     self.navigationController.navigationItem.hidesBackButton=YES;
     
     
@@ -254,7 +257,7 @@
     [self.view addSubview:_shadowView];
 
     // Use custom view to match background with PSPDFViewController.
-    UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height + toolbarHeight)];
+    UIView *backgroundTextureView = [[UIView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, self.view.bounds.size.height)];
     backgroundTextureView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     backgroundTextureView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     [self.view insertSubview:backgroundTextureView belowSubview:_shadowView];
@@ -280,6 +283,25 @@
     self.collectionView.frame = CGRectIntegral(self.view.bounds);
     self.collectionView.dataSource = self; // auto-reloads
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    
+    
+    // adding the bottom toolbar
+      self.bottomToolbar=[[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-85, self.view.frame.size.width,44)];
+    [self.view addSubview:self.bottomToolbar];
+    self.bottomToolbar.tintColor=[UIColor lightGrayColor];
+    self.linkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+   // UIImage *linkBtnImage = [UIImage imageNamed:@"top bar.png"];
+    
+    //[linkButton setBackgroundImage:linkBtnImage forState:UIControlStateNormal];
+    [self.linkButton setTitle:@"open url link" forState:UIControlStateNormal];
+    [self.linkButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
+    self.linkButton.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.link = [[UIBarButtonItem alloc] initWithCustomView:self.linkButton];
+    
+     [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link, nil]];
+    
+
 
     // Add the search bar.
    // CGFloat searchBarWidth = 290.f;
@@ -309,6 +331,12 @@
   //  [self.collectionView addSubview:self.searchBar];
 }
 
+
+-(void)openLinkAction
+{
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.google.com"]];
+}
 
 - (void) changeButtonsOnTabChange:(int) tabId{
     if (tabId == 0) {
@@ -1611,6 +1639,8 @@ return (UICollectionViewCell *)cell;
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         //other codes
         [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer, self.bigspacer, self.bigspacer,self.bookmark,self.spacer,self.setting,self.search,self.help ,nil] animated:NO];
+        
+        
     }
     
     else {
@@ -1644,6 +1674,9 @@ return (UICollectionViewCell *)cell;
     }
     }
 }
+     self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
+    self.linkButton.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+
 
 }
 
