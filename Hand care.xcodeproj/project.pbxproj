@@ -44,6 +44,9 @@
 		90AC489F173A793500D874BF /* LICENCE in Resources */ = {isa = PBXBuildFile; fileRef = 90AC4882173A793500D874BF /* LICENCE */; };
 		90AC48A0173A793500D874BF /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AC4884173A793500D874BF /* SDURLCache.m */; };
 		A11FA642171335670091E53F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11FA641171335670091E53F /* CoreData.framework */; };
+		A12575E51748A0AF00675B2F /* OpenLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A12575E31748A0AF00675B2F /* OpenLinkViewController.m */; };
+		A12575E61748A0AF00675B2F /* OpenLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A12575E41748A0AF00675B2F /* OpenLinkViewController.xib */; };
+		A12575E81748EC4400675B2F /* logoImage.png in Resources */ = {isa = PBXBuildFile; fileRef = A12575E71748EC4400675B2F /* logoImage.png */; };
 		A13380D4170F239800AF7F71 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = A13380D3170F239800AF7F71 /* setting.png */; };
 		A1363322170B749C0042CA5D /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1363321170B749C0042CA5D /* AddressBookUI.framework */; };
 		A1363332170B755A0042CA5D /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1363331170B755A0042CA5D /* MapKit.framework */; };
@@ -127,8 +130,8 @@
 		A1B00B381734342100E94261 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A1B00B371734342100E94261 /* settings.png */; };
 		A1B00B3A1734342C00E94261 /* top bar.png in Resources */ = {isa = PBXBuildFile; fileRef = A1B00B391734342C00E94261 /* top bar.png */; };
 		A1B00B3C173437A000E94261 /* share12.png in Resources */ = {isa = PBXBuildFile; fileRef = A1B00B3B1734379F00E94261 /* share12.png */; };
+		A1BE065B1749226100C6CF7E /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BE065A1749226100C6CF7E /* CustomNavigationController.m */; };
 		A1BF1BD61719C7DF007AD3EE /* clear.png in Resources */ = {isa = PBXBuildFile; fileRef = A1BF1BD51719C7DE007AD3EE /* clear.png */; };
-		A1BF1C241746B4BB001CB67F /* CustomNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BF1C231746B4BB001CB67F /* CustomNavigationController.m */; };
 		A1C224171709DF58002FF817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C224161709DF58002FF817 /* UIKit.framework */; };
 		A1C224191709DF58002FF817 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C224181709DF58002FF817 /* Foundation.framework */; };
 		A1C2241B1709DF58002FF817 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1C2241A1709DF58002FF817 /* CoreGraphics.framework */; };
@@ -245,6 +248,10 @@
 		90AC4883173A793500D874BF /* SDURLCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDURLCache.h; sourceTree = "<group>"; };
 		90AC4884173A793500D874BF /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
 		A11FA641171335670091E53F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		A12575E21748A0AE00675B2F /* OpenLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenLinkViewController.h; sourceTree = "<group>"; };
+		A12575E31748A0AF00675B2F /* OpenLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenLinkViewController.m; sourceTree = "<group>"; };
+		A12575E41748A0AF00675B2F /* OpenLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenLinkViewController.xib; sourceTree = "<group>"; };
+		A12575E71748EC4400675B2F /* logoImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoImage.png; sourceTree = "<group>"; };
 		A13380D3170F239800AF7F71 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = setting.png; path = "png-100%/setting.png"; sourceTree = "<group>"; };
 		A1363321170B749C0042CA5D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		A1363331170B755A0042CA5D /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -329,9 +336,9 @@
 		A1B00B371734342100E94261 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A1B00B391734342C00E94261 /* top bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top bar.png"; sourceTree = "<group>"; };
 		A1B00B3B1734379F00E94261 /* share12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share12.png; sourceTree = "<group>"; };
+		A1BE06591749225100C6CF7E /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
+		A1BE065A1749226100C6CF7E /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
 		A1BF1BD51719C7DE007AD3EE /* clear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clear.png; sourceTree = "<group>"; };
-		A1BF1C221746B4BB001CB67F /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
-		A1BF1C231746B4BB001CB67F /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
 		A1C224131709DF58002FF817 /* Hand care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hand care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C224161709DF58002FF817 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A1C224181709DF58002FF817 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -609,6 +616,7 @@
 		A136334A170B7D910042CA5D /* png-100% */ = {
 			isa = PBXGroup;
 			children = (
+				A12575E71748EC4400675B2F /* logoImage.png */,
 				A1C74C76173547BD004181D3 /* help1.png */,
 				A1B00B3B1734379F00E94261 /* share12.png */,
 				A1B00B391734342C00E94261 /* top bar.png */,
@@ -721,8 +729,6 @@
 				A1F58E4C170CA68D00377A4B /* ASSHViewController.h */,
 				A1DFAE6C173E2B86001AB599 /* ASSHViewController.m */,
 				A1F58E4E170CA68D00377A4B /* ASSHViewController.xib */,
-				A1BF1C221746B4BB001CB67F /* CustomNavigationController.h */,
-				A1BF1C231746B4BB001CB67F /* CustomNavigationController.m */,
 				A1C2241D1709DF58002FF817 /* Supporting Files */,
 			);
 			path = ASSH;
@@ -745,6 +751,8 @@
 		A1DFAE25173E169E001AB599 /* Kiosk */ = {
 			isa = PBXGroup;
 			children = (
+				A1BE065A1749226100C6CF7E /* CustomNavigationController.m */,
+				A1BE06591749225100C6CF7E /* CustomNavigationController.h */,
 				A1DFAE26173E169E001AB599 /* BookmarkPopoverController.h */,
 				A1DFAE27173E169E001AB599 /* BookmarkPopoverController.m */,
 				A1DFAE28173E169E001AB599 /* BookmarkPopoverController.xib */,
@@ -794,6 +802,9 @@
 				A1E6D16F1743E93700C26790 /* HelpPageViewController.h */,
 				A1E6D1701743E93700C26790 /* HelpPageViewController.m */,
 				A1E6D1711743E93700C26790 /* HelpPageViewController.xib */,
+				A12575E21748A0AE00675B2F /* OpenLinkViewController.h */,
+				A12575E31748A0AF00675B2F /* OpenLinkViewController.m */,
+				A12575E41748A0AF00675B2F /* OpenLinkViewController.xib */,
 			);
 			path = Kiosk;
 			sourceTree = "<group>";
@@ -980,6 +991,8 @@
 				A1E6D18817442C8200C26790 /* Icon-72.png in Resources */,
 				A1E6D18B17442DD500C26790 /* Icon-72@2x.png in Resources */,
 				A1E6D1941744387200C26790 /* SpecialPDF in Resources */,
+				A12575E61748A0AF00675B2F /* OpenLinkViewController.xib in Resources */,
+				A12575E81748EC4400675B2F /* logoImage.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1038,7 +1051,8 @@
 				A1E6D1721743E93700C26790 /* HelpPageViewController.m in Sources */,
 				A1E6D1911744303200C26790 /* MBProgressHUD.m in Sources */,
 				A1E6D1921744303200C26790 /* UIImage+File.m in Sources */,
-				A1BF1C241746B4BB001CB67F /* CustomNavigationController.m in Sources */,
+				A12575E51748A0AF00675B2F /* OpenLinkViewController.m in Sources */,
+				A1BE065B1749226100C6CF7E /* CustomNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
