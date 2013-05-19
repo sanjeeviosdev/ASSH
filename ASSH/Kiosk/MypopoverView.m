@@ -65,6 +65,8 @@
     navController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:navController animated:YES];
     
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

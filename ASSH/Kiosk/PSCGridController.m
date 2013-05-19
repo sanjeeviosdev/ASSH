@@ -19,6 +19,7 @@
 #import "MyPopOverView.h"
 #import "ASSHAppDelegate.h"
 #import "ListPopoverViewController.h"
+#import "OpenLinkViewController.h"
 
 
 
@@ -298,14 +299,18 @@
     self.linkButton = [UIButton buttonWithType:UIButtonTypeCustom];
     
    // UIImage *linkBtnImage = [UIImage imageNamed:@"top bar.png"];
-    
-    //[linkButton setBackgroundImage:linkBtnImage forState:UIControlStateNormal];
+     //UIImage *linkBtnImage = [UIImage imageNamed:@"footerlogo.png"];
+    //[self.linkButton setBackgroundImage:linkBtnImage forState:UIControlStateNormal];
     [self.linkButton setTitle:@"Tap to Find a Hand Surgeon in your area." forState:UIControlStateNormal];
     [self.linkButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
-    self.linkButton.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.linkButton.frame = CGRectMake(0, 0, 350, 44);
     self.link = [[UIBarButtonItem alloc] initWithCustomView:self.linkButton];
-    
-     [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link, nil]];
+    self.logoImageViw=[[UIImageView alloc] init];
+    UIImage *logoImage = [UIImage imageNamed:@"logoImage.png"];
+    [self.logoImageViw setImage:logoImage];
+    [self.logoImageViw setFrame:CGRectMake(0,0, 112, 40)];
+     self.logo = [[UIBarButtonItem alloc] initWithCustomView:self.logoImageViw];
+    [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo, nil]];
     
 
 
@@ -342,7 +347,9 @@
 -(void)openLinkAction
 {
     
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.assh.org/Public/Pages/HandSurgeons.aspx"]];
+    OpenLinkViewController *openLink=[[OpenLinkViewController alloc] initWithNibName:@"OpenLinkViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:openLink animated:YES];
 }
 
 - (void) changeButtonsOnTabChange:(int) tabId{
@@ -763,6 +770,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+     [self updateNavBar];
  self.sharePdfArray=[[NSMutableArray alloc] init];
     // Ensure our navigation bar is visible. PSPDFKit restores the properties,
     // But since we're doing a custom fade-out on the navigationBar alpha,
@@ -968,7 +977,7 @@
     
    
     self.lastOpenedMagazine = magazine;
-    // [self.searchBar resignFirstResponder];
+     [self.searchBar resignFirstResponder];
     magazine.overrideClassNames = @{(id)[PSPDFBookmarkParser class] : [PSCBookmarkParser class]};
     
     
@@ -978,9 +987,10 @@
     });
     
     PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
+    pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObjects: @(PSPDFOutlineBarButtonItemOptionAnnotations), nil];
     
         
-    
+    /*
     
     // Try to get full-size image, if that fails try thumbnail.
     UIImage *coverImage = [self imageForMagazine:magazine];
@@ -1044,8 +1054,11 @@
             _animateViewWillAppearWithFade = YES;
             [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
         }
+     }
+     */
         [self.navigationController pushViewController:pdfController animated:NO];
-    }
+
+     
     
     return YES;
 }
@@ -1240,6 +1253,7 @@ if([cell.contentView subviews].count>0)
             removeButton.hidden=YES;
             [cell.contentView addSubview:removeButton];
         }
+        
         if (self.clearPressed==YES) {
             
         
@@ -1673,7 +1687,9 @@ return (UICollectionViewCell *)cell;
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    
+    [ self orientation];
+    [self updateNavBar];
+
     return YES;
 }
 
@@ -1685,11 +1701,30 @@ return (UICollectionViewCell *)cell;
 
 - (NSUInteger)supportedInterfaceOrientations // iOS 6 autorotation fix
 {
-    
     [ self orientation];
+    [self updateNavBar];
+
     return UIInterfaceOrientationMaskAll;
 }
 
+
+- (void) updateNavBar {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    if ((UIInterfaceOrientationLandscapeLeft == orientation) ||
+        (UIInterfaceOrientationLandscapeRight == orientation)) {
+        self.navigationController.navigationBar.frame = CGRectMake(0, 20, 1024, 44);
+        [self.tools setFrame:CGRectMake(0, 0, 1024, 44)];
+        [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.bigspacer,self.bigspacer, self.logo, nil]];
+
+
+    } else {
+        self.navigationController.navigationBar.frame = CGRectMake(0, 20, 768, 44);
+        [self.tools setFrame:CGRectMake(0, 0, 768, 44)];
+        [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo, nil]];
+
+
+    }
+}
 //- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation // iOS 6 autorotation fix
 //{
 //    return UIInterfaceOrientationPortrait;
@@ -1740,7 +1775,9 @@ return (UICollectionViewCell *)cell;
     }
 }
      self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
-    self.linkButton.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    self.linkButton.frame = CGRectMake(0, 0, 350, 44);
+
+    
 
 
 }

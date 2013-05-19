@@ -95,16 +95,16 @@
     }
     
     PSCGridController *gridController = [[PSCGridController alloc] init];
-    navigationController = [[CustomNavigationController alloc]
-                            initWithRootViewController:gridController]; // iOS 6 autorotation fix
-    [navigationController setNavigationBarHidden:YES animated:NO];
+    // self.navigationController=[[UINavigationController alloc] initWithRootViewController:gridController];
+
+    self.navigationController = [[CustomNavigationController alloc]initWithRootViewController:gridController]; // iOS 6 autorotation fix
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-   self.navigationController.navigationBarHidden=YES;
+  // self.navigationController.navigationBarHidden=NO;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
     
    
 
-   // self.navigationController=[[UINavigationController alloc] initWithRootViewController:gridController];
     
     self.window.rootViewController = self.navigationController;
     

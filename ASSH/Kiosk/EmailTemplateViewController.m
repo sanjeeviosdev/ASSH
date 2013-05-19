@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     self.title = @"E-Mail Template";
-     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
+    // self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
     emailBodyField.layer.cornerRadius = 3;
     emailBodyField.clipsToBounds = YES;
     emailBodyField.layer.borderColor = [[UIColor lightGrayColor] CGColor];

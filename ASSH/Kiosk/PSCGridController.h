@@ -54,6 +54,9 @@
 @property(nonatomic,strong)UIBarButtonItem *list;
 @property(nonatomic,strong)UIBarButtonItem *link;
 @property(nonatomic,strong)UIButton *linkButton;
+@property(nonatomic,strong)UIImageView *logoImageViw;
+@property(nonatomic,strong)UIBarButtonItem *logo;
+
 
 @property(nonatomic,strong) UILongPressGestureRecognizer *longPress;
 
