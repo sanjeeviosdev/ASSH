@@ -56,35 +56,7 @@
         self.renderAnimationEnabled = NO; // custom implementation here
         self.fitToWidthEnabled=YES;
 
-        
-//        self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Custom" image:[UIImage imageNamed:@"balloon"] tag:2];
-//        
-//        // disable default toolbar
-//        [self setToolbarEnabled:NO];
-//        self.statusBarStyleSetting = PSPDFStatusBarBlackOpaque;
-//        self.renderAnimationEnabled = NO; // custom implementation here
-//        
-//        // add custom controls to our toolbar
-//       // NSMutableArray *rightBarButtonItems = [NSMutableArray array];
-//        UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        UIImage *shareBtnImage = [UIImage imageNamed:@"action.png"];
-//        [shareBtn setBackgroundImage:shareBtnImage forState:UIControlStateNormal];
-//        [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
-//        shareBtn.frame = CGRectMake(0, 0,25,25);
-//        
-//        self.shareBarbuttonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
-//        
-//        self.navigationItem.rightBarButtonItems = @[self.shareBarbuttonItem, self.printButtonItem, self.searchButtonItem, self.emailButtonItem, self.annotationButtonItem];
-//        
-//        // UIBarButtons are defaulted to be plain in PSPDFKit. Iterate and update them to improve image rendering and positioning in bordered.
-//        for (UIBarButtonItem *barButton in self.navigationItem.rightBarButtonItems) {
-//            barButton.style = UIBarButtonItemStyleBordered;
-//        }
-//        
-//        self.delegate = self;
-//
-        
-        
+             
         // Register for global var change notifications from PSPDFCacheSettingsController.
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(globalVarChanged) name:kGlobalVarChangeNotification object:nil];
         
@@ -93,23 +65,7 @@
                                                     name:@"sharepopover"
                                                         object:nil];
         
-        
-        // Don't clip pages that have a high aspect ration variance. (for pageCurl, optional but useful check)
-        // Use a dispatch thread because calculating the aspectRatioVariance is expensive.
-        // Disabled by default, since this can be slow.
-        /*
-        __weak typeof (self) weakSelf = self;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            CGFloat variance = [document aspectRatioVariance];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.clipToPageBoundaries = variance < 0.2f;
-            });
-        });
-         */
-        
-       // self.documentFileName = [NSString stringWithFormat:@"temp_%@", document.title];
-        
-        
+               
         //remove some options from annotation toolbar
         NSMutableOrderedSet *editableTypes = [document.editableAnnotationTypes mutableCopy];
         [editableTypes removeAllObjects];
@@ -133,9 +89,9 @@
 
         // Change color.
         self.tintColor = [UIColor grayColor];
-        //self.statusBarStyleSetting = PSPDFStatusBarDefault;
         
-        // Change statusbar setting to your preferred style.
+        //self.statusBarStyleSetting = PSPDFStatusBarDefault;
+     // Change statusbar setting to your preferred style.
         //self.statusBarStyleSetting = PSPDFStatusBarDisable;
         //self.statusBarStyleSetting = self.statusBarStyleSetting | PSPDFStatusBarIgnore;
         
@@ -421,80 +377,6 @@
     [self setViewState:viewState animated:NO];
 }
 
-
-// This is to present the most common features of PSPDFKit.
-// iOS is all about choosing the right options for the user. You really shouldn't ship that.
-//- (void)globalVarChanged {
-//    // Preserve viewState, but only page, not contentOffset. (since we can change fitToWidth etc here)
-//    PSPDFViewState *viewState = [self viewState];
-//    viewState.zoomScale = 1;
-//    viewState.contentOffset = CGPointMake(0, 0);
-//    
-//    NSMutableDictionary *renderOptions = [self.document.renderOptions mutableCopy] ?: [NSMutableDictionary dictionary];
-//    NSDictionary *settings = [PSCSettingsController settings];
-//    [settings enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-//        // renderOptions need special treatment.
-//        if ([key isEqual:@"renderBackgroundColor"])     renderOptions[kPSPDFBackgroundFillColor] = obj;
-//        else if ([key isEqual:@"renderContentOpacity"]) renderOptions[kPSPDFContentOpacity] = obj;
-//        else if ([key isEqual:@"renderInvertEnabled"])  renderOptions[kPSPDFInvertRendering] = obj;
-//        
-//        else if (![key hasSuffix:@"ButtonItem"] && ![key hasPrefix:@"showTextBlocks"]){
-//            
-//            [self setValue:obj forKey:[PSCSettingsController setterKeyForGetter:key]];
-//        }
-//    }];
-//    self.document.renderOptions = renderOptions;
-//    
-//    UIButton *homeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIImage *homeBtnImage = [UIImage imageNamed:@"home.png"];
-//    
-//    [homeBtn setBackgroundImage:homeBtnImage forState:UIControlStateNormal];
-//    [homeBtn addTarget:self action:@selector(home) forControlEvents:UIControlEventTouchUpInside];
-//    homeBtn.frame = CGRectMake(0, 0, 30, 30);
-//    //[tools addSubview:contentBtn];
-//    _closeButtonItem = [[UIBarButtonItem alloc] initWithCustomView:homeBtn];
-//    
-//    // Defaults to nil, this would show the back arrow (but we want a custom animation, thus our own button)
-//   // NSString *closeTitle = PSIsIpad() ? NSLocalizedString(@"Main Screen", @"") : NSLocalizedString(@"Back", @"");
-//   // _closeButtonItem = [[UIBarButtonItem alloc] initWithTitle:closeTitle style:UIBarButtonItemStyleBordered target:self action:@selector(close:)];
-//    _settingsButtomItem = [[PSCSettingsBarButtonItem alloc] initWithPDFViewController:self];
-//    
-//#ifdef PSPDFCatalog
-//    _metadataButtonItem = [[PSCMetadataBarButtonItem alloc] initWithPDFViewController:self];
-//    _annotationListButtonItem = [[PSCAnnotationTableBarButtonItem alloc] initWithPDFViewController:self];
-//    [self updateSettingsForRotation:self.interfaceOrientation force:YES];
-//#endif
-//    
-//    self.barButtonItemsAlwaysEnabled = @[_closeButtonItem];
-//    
-//
-//    
-//    NSMutableArray *rightBarButtonItems = [NSMutableArray array];
-//    UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    UIImage *shareBtnImage = [UIImage imageNamed:@"action.png"];
-//    [shareBtn setBackgroundImage:shareBtnImage forState:UIControlStateNormal];
-//    [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
-//    shareBtn.frame = CGRectMake(0, 0, 25, 25);
-//    
-//    self.shareBarbuttonItem=[[UIBarButtonItem alloc] initWithCustomView:shareBtn];
-//    [rightBarButtonItems addObject:self.shareBarbuttonItem];
-//    if ([settings[NSStringFromSelector(@selector(annotationButtonItem))] boolValue]) {
-//        [rightBarButtonItems addObject:self.annotationButtonItem];
-//    }
-//    if (PSIsIpad()) {
-//        if ([settings[NSStringFromSelector(@selector(outlineButtonItem))] boolValue]) {
-//            [rightBarButtonItems addObject:self.outlineButtonItem];
-//        }
-//       
-//        if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
-//            [rightBarButtonItems addObject:self.bookmarkButtonItem];
-//        }
-//    }
-//        self.navigationItem.rightBarButtonItems = rightBarButtonItems;
-//       // reload scroll view and restore viewState
-//    [self reloadData];
-//    [self setViewState:viewState animated:NO];
-//}
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - PSPDFViewControllerDelegate

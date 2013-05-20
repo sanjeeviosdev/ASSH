@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ASSHViewController.h"
 
 
 #define UIAPPDelegate ((ASSHAppDelegate *)[[UIApplication sharedApplication] delegate])
@@ -15,7 +14,6 @@
 @interface ASSHAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) ASSHViewController *viewController;
 @property(nonatomic,strong)UINavigationController *navigationController;
 @property(nonatomic,assign) BOOL isSorting;
 @property(nonatomic,assign) BOOL isMyTopic;

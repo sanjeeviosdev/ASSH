@@ -8,13 +8,11 @@
 
 #import "ASSHAppDelegate.h"
 #import "PSCGridController.h"
-#import "ASSHViewController.h"
-#import "MyTopics.h"
 #import "CustomNavigationController.h"
+#import "Bookmarks.h"
 
 @implementation ASSHAppDelegate
 @synthesize navigationController;
-@synthesize window;@synthesize viewController;
 @synthesize isSorting;
 @synthesize isMyTopic;
 @synthesize managedObjectContext = _managedObjectContext;
@@ -26,10 +24,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-//    //self.window.backgroundColor = [UIColor whiteColor];
     
-    // sanjeev
-    
+    // create directory and copy the files from samples resource to document directory
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -41,14 +37,10 @@
     if (![fileManager fileExistsAtPath:documentDBFolderPath]) {
         //Create Directory!
         [fileManager createDirectoryAtPath:documentDBFolderPath withIntermediateDirectories:NO attributes:nil error:&error];
-        
-    } else {
-        
+        } else {
         NSLog(@"Directory exists! %@", documentDBFolderPath);
         
     }
-    
-    
     
     NSArray *fileList = [fileManager contentsOfDirectoryAtPath:resourceDBFolderPath error:&error];
     for (NSString *s in fileList) {
@@ -64,13 +56,10 @@
     }
     
     
-    
+    //copy the special pdf to myTopics document directory
     NSString *resourceDBFolderPathNew = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"SpecialPDF"];
     NSString *documentDBFolderPathNew = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
-
-    
-    // Changes done by Chandan to accomodate new requirement of keeping my topics separate
-    
+   // Changes done by Chandan to accomodate new requirement of keeping my topics separate
     NSString *documentDBFolderPathForTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
     
     if (![fileManager fileExistsAtPath:documentDBFolderPathForTopic]) {
@@ -95,19 +84,10 @@
     }
     
     PSCGridController *gridController = [[PSCGridController alloc] init];
-    // self.navigationController=[[UINavigationController alloc] initWithRootViewController:gridController];
-
     self.navigationController = [[CustomNavigationController alloc]initWithRootViewController:gridController]; // iOS 6 autorotation fix
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
-  // self.navigationController.navigationBarHidden=NO;
     self.navigationController.navigationBar.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
-    
-   
-
-    
     self.window.rootViewController = self.navigationController;
-    
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -233,10 +213,12 @@
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
+
+// add bookmark to the topics or my topics
 -(void)addBookmark:(NSString *)book
 {
     NSError *error = nil;
-    MyTopics *bookmark = [NSEntityDescription
+    Bookmarks *bookmark = [NSEntityDescription
                           insertNewObjectForEntityForName:@"Bookmarks" inManagedObjectContext:self.managedObjectContext];
     
     bookmark.bookName = book;
@@ -245,6 +227,7 @@
         NSLog(@"Recording, couldn't save: %@", [error localizedDescription]);
     }
 }
+// remove bookmarks from topics and my topics
 -(void)removeBookmark:(NSString *)book
 {
     
@@ -268,6 +251,8 @@
 
     
 }
+
+// fetch bookmarks from topics and mytopics
 -(NSMutableArray *)fetchBookmarks
 {
 NSError *error = nil;
@@ -277,61 +262,13 @@ NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmarks"
 [fetchRequest setEntity:entity];
 NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
 NSMutableArray *result=[[NSMutableArray alloc] init];
-for (MyTopics *info in fetchedObjects)
+for (Bookmarks *info in fetchedObjects)
 {
     NSLog(@"%@",info.bookName);
     [result addObject:info.bookName];
 }
 
 return result;
-}
-
--(void)insertData:(NSArray *)pdfArray;
-{
-    NSString *pdfName=[pdfArray objectAtIndex:0];
-    NSString *content=[pdfArray objectAtIndex:1];
-    NSString *index=[pdfArray objectAtIndex:2];
-    NSInteger indexpage= [index integerValue];
-    NSError *error = nil;
-    MyTopics *empDetail = [NSEntityDescription
-                           insertNewObjectForEntityForName:@"MyTopics" inManagedObjectContext:self.managedObjectContext];
-    empDetail.bookName = pdfName;
-    empDetail.content = content;
-    empDetail.indexOnPage = indexpage;
-    
-    if (![self.managedObjectContext save:&error]) {
-        NSLog(@"Recording, couldn't save: %@", [error localizedDescription]);
-    }
-}
-
--(NSMutableArray *)fetchData
-{
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"MyTopics"
-                                              inManagedObjectContext:self. managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
-     NSMutableArray *result=[[NSMutableArray alloc] init];
-    for (MyTopics *info in fetchedObjects)
-    {
-        NSMutableDictionary *dict=[[NSMutableDictionary alloc] init];
-        if (info.bookName) {
-            [dict setObject:info.bookName forKey:@"pdfName"];
-            }
-        if (info.content) {
-            [dict setObject:info.content forKey:@"content"];
-        }
-        if (info.indexOnPage) {
-            NSString *str=[NSString stringWithFormat:@"%i",info.indexOnPage];
-            [dict setObject:str forKey:@"index"];
-        }
-           [result addObject:dict];
-    }
-    
-   return result;
-    
 }
 
 

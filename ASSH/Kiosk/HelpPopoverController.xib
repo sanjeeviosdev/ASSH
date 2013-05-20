@@ -39,9 +39,10 @@
 					<object class="IBUIScrollView" id="504310370">
 						<reference key="NSNextResponder" ref="387751871"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, -23}, {589, 477}}</string>
+						<string key="NSFrame">{{-1, -23}, {701, 566}}</string>
 						<reference key="NSSuperview" ref="387751871"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="737055268"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -51,10 +52,9 @@
 						<reference key="NSNextResponder" ref="387751871"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{0, 455}, {589, 36}}</string>
+						<string key="NSFrame">{{0, 541}, {700, 36}}</string>
 						<reference key="NSSuperview" ref="387751871"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="504310370"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4yNTk1NTIxNTAyIDAuMjY0MTIxOTgxOSAwLjMzMzg1Njk5NzMAA</bytes>
@@ -68,10 +68,10 @@
 						<int key="IBUINumberOfPages">3</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{589, 493}</string>
+				<string key="NSFrameSize">{700, 577}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="737055268"/>
+				<reference key="NSNextKeyView" ref="504310370"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -133,8 +133,8 @@
 						<int key="objectID">30</int>
 						<reference key="object" ref="387751871"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="737055268"/>
 							<reference ref="504310370"/>
+							<reference ref="737055268"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

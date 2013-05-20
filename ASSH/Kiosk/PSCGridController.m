@@ -305,11 +305,12 @@
     [self.linkButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
     self.linkButton.frame = CGRectMake(0, 0, 350, 44);
     self.link = [[UIBarButtonItem alloc] initWithCustomView:self.linkButton];
-    self.logoImageViw=[[UIImageView alloc] init];
+    self.logoButton=[[UIButton alloc] init];
     UIImage *logoImage = [UIImage imageNamed:@"logoImage.png"];
-    [self.logoImageViw setImage:logoImage];
-    [self.logoImageViw setFrame:CGRectMake(0,0, 112, 40)];
-     self.logo = [[UIBarButtonItem alloc] initWithCustomView:self.logoImageViw];
+    [self.logoButton setImage:logoImage forState:UIControlStateNormal];
+    [self.logoButton setFrame:CGRectMake(0,0, 112, 40)];
+    [self.logoButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
+     self.logo = [[UIBarButtonItem alloc] initWithCustomView:self.logoButton];
     [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo, nil]];
     
 
@@ -569,7 +570,7 @@
     helpPopOver = [[HelpPopoverController alloc] initWithNibName:@"HelpPopoverController" bundle:nil];
     popoverController = [[UIPopoverController alloc] initWithContentViewController:helpPopOver];
     //[popoverController setDelegate:self];
-    [popoverController setPopoverContentSize:CGSizeMake(589.0f, 493.0f)];
+    [popoverController setPopoverContentSize:CGSizeMake(700.0f, 577.0f)];
     if (self.view.window != nil)
     {
         
@@ -1366,27 +1367,7 @@ return (UICollectionViewCell *)cell;
             
             [self.sharePdfArray removeAllObjects];
             [ self clearAction];
-            //[self changeButtonsOnTabChange:1];
-//            self.longPressed=NO;
-//            //[PSCStoreManager sharedStoreManager].delegate = self;
-//            
-//            // Ensure everything is up to date (we could change magazines in other controllers)
-//            self.immediatelyLoadCellImages = YES;
-//            [self diskDataLoaded]; // also reloads the grid
-//            self.immediatelyLoadCellImages = NO;
-//            
-//            if (_animateViewWillAppearWithFade) {
-//                [self.navigationController.view.layer addAnimation:PSPDFFadeTransition() forKey:kCATransition];
-//                _animateViewWillAppearWithFade = NO;
-//            }
-//            
-//            [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
-//
-//            [self updateGrid];
-            
-           
-
-			break;
+                    break;
 		case MFMailComposeResultFailed:
 			message = @"Mail: failed";
             [self.sharePdfArray removeAllObjects];
@@ -1715,20 +1696,19 @@ return (UICollectionViewCell *)cell;
         self.navigationController.navigationBar.frame = CGRectMake(0, 20, 1024, 44);
         [self.tools setFrame:CGRectMake(0, 0, 1024, 44)];
         [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.bigspacer,self.bigspacer, self.logo, nil]];
+        self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
 
 
     } else {
         self.navigationController.navigationBar.frame = CGRectMake(0, 20, 768, 44);
         [self.tools setFrame:CGRectMake(0, 0, 768, 44)];
         [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo, nil]];
+        self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
+
 
 
     }
 }
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation // iOS 6 autorotation fix
-//{
-//    return UIInterfaceOrientationPortrait;
-//}
 
 
 -(void)orientation
