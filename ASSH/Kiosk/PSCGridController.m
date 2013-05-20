@@ -1272,7 +1272,7 @@ if([cell.contentView subviews].count>0)
                 if([self.markedTopics containsObject:mag.fileName] == YES ) {
                     
                 UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
-                    [bookmarkButton setImage:[UIImage imageNamed:@"bookmark12.png"] forState:UIControlStateNormal];
+                    [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
                     bookmarkButton.tag=cell.tag+3000;
                     [cell.contentView addSubview:bookmarkButton];
                     bookmarkButton.userInteractionEnabled=NO;
@@ -1306,12 +1306,12 @@ return (UICollectionViewCell *)cell;
     self.longPressed=YES;
          if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
          {
-              [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+              [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
              
          }
          else{
         
-     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.bigspacer, self.biggerSpacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.bigspacer, self.biggerSpacer,self.spacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
          }
       
         
@@ -1732,12 +1732,12 @@ return (UICollectionViewCell *)cell;
     if (self.longPressed==YES) {
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.spacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.spacer,self.spacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             
         }
         
         else {
-            [self.tools setItems:[NSArray arrayWithObjects:  self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.clear,self.spacer,self.spacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects:  self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.clear,self.spacer,self.spacer,self.spacer,self.spacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             //other codes
         }
     }

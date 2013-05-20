@@ -357,30 +357,7 @@
     
                           
     self.shareBarbuttonItem = [[UIBarButtonItem alloc] initWithImage:shareBtnImage style:UIBarButtonItemStylePlain target:self action:@selector(shareAction)];
-    
-    
-//    UIButton *annotationsBtn = [[UIButton alloc] init];
-//    UIImage *annotationsBtnImage = [UIImage imageNamed:@"draw.png"];
-//    [annotationsBtn setBackgroundImage:annotationsBtnImage forState:UIControlStateNormal];
-//    [annotationsBtn addTarget:self action:@selector(annotationButtonItem) forControlEvents:UIControlEventTouchUpInside];
-//    annotationsBtn.frame = CGRectMake(0, 0, 25, 25);
-//    self.annotationsBarbuttonItem=[[UIBarButtonItem alloc] initWithCustomView:annotationsBtn];
-//    
-//    UIButton *contentBtn = [[UIButton alloc] init];
-//    UIImage *contentBtnImage = [UIImage imageNamed:@"comment.png"];
-//    [contentBtn setBackgroundImage:contentBtnImage forState:UIControlStateNormal];
-//    [contentBtn addTarget:self action:@selector(outlineButtonItem) forControlEvents:UIControlEventTouchUpInside];
-//    contentBtn.frame = CGRectMake(0, 0, 25, 25);
-//    self.contentBarbuttonItem=[[UIBarButtonItem alloc] initWithCustomView:contentBtn];
-//    
-//    UIButton *bookmarkBtn = [[UIButton alloc] init];
-//    UIImage *bookmarkBtnImage = [UIImage imageNamed:@"bookmark1.png"];
-//    [bookmarkBtn setBackgroundImage:bookmarkBtnImage forState:UIControlStateNormal];
-//    [bookmarkBtn addTarget:self action:@selector(bookmarkButtonItem) forControlEvents:UIControlEventTouchUpInside];
-//    bookmarkBtn.frame = CGRectMake(0, 0, 25, 25);
-//    self.bookmarkBarbuttonItem=[[UIBarButtonItem alloc] initWithCustomView:bookmarkBtn];
-
-    
+ 
     
     if (PSIsIpad()) {
         if ([settings[NSStringFromSelector(@selector(bookmarkButtonItem))] boolValue]) {
