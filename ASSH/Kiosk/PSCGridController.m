@@ -148,7 +148,7 @@
     //listButton
     
     UIButton *listBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *listBtnImage = [UIImage imageNamed:@"list_icon.png"];
+    UIImage *listBtnImage = [UIImage imageNamed:@"listview.png"];
     [listBtn setBackgroundImage:listBtnImage forState:UIControlStateNormal];
     [listBtn addTarget:self action:@selector(listAction) forControlEvents:UIControlEventTouchUpInside];
     [listBtn setFrame:CGRectMake(0, 0, 30, 31)];
@@ -191,7 +191,7 @@
     self.bigspacer.width=40;
    
     UIButton *shareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *shareBtnImage = [UIImage imageNamed:@"share12.png"];
+    UIImage *shareBtnImage = [UIImage imageNamed:@"share.png"];
     [shareBtn setBackgroundImage:shareBtnImage forState:UIControlStateNormal];
     [shareBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
     [shareBtn setFrame:CGRectMake(0, 0, 30, 30)];
@@ -201,7 +201,7 @@
     UIImage *backBtnImage = [UIImage imageNamed:@"settings.png"];
     [settingBtn setBackgroundImage:backBtnImage forState:UIControlStateNormal];
     [settingBtn addTarget:self action:@selector(settingAction) forControlEvents:UIControlEventTouchUpInside];
-    settingBtn.frame = CGRectMake(0, 0, 33, 29);
+    settingBtn.frame = CGRectMake(0, 0, 38, 27);
     self.setting = [[UIBarButtonItem alloc] initWithCustomView:settingBtn];
 
     
@@ -210,7 +210,7 @@
     
     [clearBtn setBackgroundImage:clearBtnImage forState:UIControlStateNormal];
     [clearBtn addTarget:self action:@selector(clearAction) forControlEvents:UIControlEventTouchUpInside];
-    clearBtn.frame = CGRectMake(0, 0, 40, 30);
+    clearBtn.frame = CGRectMake(0, 0, 30, 30);
     //[tools addSubview:contentBtn];
     self.clear = [[UIBarButtonItem alloc] initWithCustomView:clearBtn];
     //[buttons addObject:content];
@@ -235,7 +235,7 @@
 
     [helpBtn setBackgroundImage:helpBtnImage forState:UIControlStateNormal];
     [helpBtn addTarget:self action:@selector(helpBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    helpBtn.frame = CGRectMake(0, 0, 25, 25);
+    helpBtn.frame = CGRectMake(0, 0, 28, 28);
     self.help = [[UIBarButtonItem alloc] initWithCustomView:helpBtn];
     
     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.spacer,self.bigspacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
@@ -1272,7 +1272,7 @@ if([cell.contentView subviews].count>0)
                 if([self.markedTopics containsObject:mag.fileName] == YES ) {
                     
                 UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
-                    [bookmarkButton setImage:[UIImage imageNamed:@"bookmark1.png"] forState:UIControlStateNormal];
+                    [bookmarkButton setImage:[UIImage imageNamed:@"bookmark12.png"] forState:UIControlStateNormal];
                     bookmarkButton.tag=cell.tag+3000;
                     [cell.contentView addSubview:bookmarkButton];
                     bookmarkButton.userInteractionEnabled=NO;

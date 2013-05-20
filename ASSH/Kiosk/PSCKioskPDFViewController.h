@@ -26,6 +26,8 @@
 @property (nonatomic, strong) PSCBookmarkParser *pscBookmarkParser;
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property(nonatomic,strong)UIBarButtonItem *shareBarbuttonItem;
+
+
 @property(nonatomic,strong)SharePopoverView *sharePopover;
 @property(nonatomic,assign) BOOL isSelectedMyTopics;
 
