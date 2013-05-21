@@ -219,7 +219,7 @@
     UIImage *bookmarkBtnImage = [UIImage imageNamed:@"bookmark.png"];
     [bookmarkBtn setBackgroundImage:bookmarkBtnImage forState:UIControlStateNormal];
     [bookmarkBtn addTarget:self action:@selector(bookmarkAction) forControlEvents:UIControlEventTouchUpInside];
-    bookmarkBtn.frame = CGRectMake(0, 0, 32,25 );
+    bookmarkBtn.frame = CGRectMake(0, 0, 32,27 );
     self.bookmark = [[UIBarButtonItem alloc] initWithCustomView:bookmarkBtn];
     
     
@@ -1270,12 +1270,15 @@ if([cell.contentView subviews].count>0)
           
               PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
                 if([self.markedTopics containsObject:mag.fileName] == YES ) {
+                    if (![mag.bookmarks count]==0)
+                    {
                     
                 UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
                     [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
                     bookmarkButton.tag=cell.tag+3000;
                     [cell.contentView addSubview:bookmarkButton];
                     bookmarkButton.userInteractionEnabled=NO;
+                    }
                }
 
 

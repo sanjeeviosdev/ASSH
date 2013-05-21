@@ -127,7 +127,16 @@
                 
                 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
                 NSString *documentsDirectory = [paths objectAtIndex:0];
-                NSString *FolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+            NSString *FolderPath;
+            if ([UIAPPDelegate isMyTopic])
+            {
+                 FolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+            }
+            else
+            {
+                FolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
+
+            }
                 NSString* FilePath = [FolderPath stringByAppendingPathComponent:fileName];
                 
                 
