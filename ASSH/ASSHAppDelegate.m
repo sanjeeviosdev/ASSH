@@ -271,5 +271,16 @@ for (Bookmarks *info in fetchedObjects)
 return result;
 }
 
+-(NSString *) removeZZZ:(NSString *) strInputString {
+    // Remove the unwanted "zzz" from the title which was appended earlier for showing some pdfs at end
+    if ([strInputString rangeOfString:@"zzz"].location != NSNotFound) {
+        NSMutableString *title = [strInputString mutableCopy];
+        [title replaceOccurrencesOfString:@"zzz" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, title.length)];
+        return [title copy];
+    } else {
+        return strInputString;
+    }
+}
+
 
 @end

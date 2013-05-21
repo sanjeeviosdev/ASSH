@@ -27,7 +27,7 @@
 -(void)addBookmark:(NSString *)book;
 -(void)removeBookmark:(NSString *)book;
 -(NSArray *)fetchBookmarks;
-
+-(NSString *) removeZZZ:(NSString *) strInputString;
 
 
 @end
