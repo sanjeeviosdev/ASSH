@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"ASSH";
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.assh.org/Public/Pages/HandSurgeons.aspx"]];
     
     [self.webView loadRequest:request];

@@ -225,6 +225,7 @@
 
 - (void) showSaveAsDialog {
     NSString *str = [NSString stringWithFormat:@"%@", [[self.document.fileURL lastPathComponent] stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
+    str = [UIAPPDelegate removeZZZ:str];
     UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Save as new topic" message:@"\n \n" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
     // create text field
     textfield=[[UITextField alloc] initWithFrame:CGRectMake(20, 50, 240, 33)];
@@ -395,6 +396,7 @@
     pdfController.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"linen_texture_dark"]];
     // show pdf title and fileURL
     if (document) {
+        /*
         NSString *fileName = PSPDFStripPDFFileType([document.fileURL lastPathComponent]);
         if (fileName == nil) {
             self.title = document.title;
@@ -409,6 +411,9 @@
             [title replaceOccurrencesOfString:@"zzz" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, title.length)];
             self.title = title;
         }
+        */
+        self.title = [NSString stringWithFormat:@"%@", [[document.fileURL lastPathComponent] stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
+        self.title = [UIAPPDelegate removeZZZ:self.title];
     }
 }
 

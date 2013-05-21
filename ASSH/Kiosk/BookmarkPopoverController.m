@@ -154,6 +154,7 @@
     
     NSString *topicStr=[[[self.topicsArray objectAtIndex:indexPath.row] files] objectAtIndex:0];
     topicStr=[topicStr stringByReplacingOccurrencesOfString:@".pdf" withString:@""];
+    topicStr = [UIAPPDelegate removeZZZ:topicStr];
     cell.textLabel.text=topicStr;
 
     

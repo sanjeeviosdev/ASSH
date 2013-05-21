@@ -11,6 +11,7 @@
 #import "PSCDownload.h"
 #import "PSCStoreManager.h"
 #import "UIImageView+AFNetworking.h"
+#import "ASSHAppDelegate.h"
 
 #define kPSPDFKitDownloadingKey @"downloading"
 #define kPSPDFCellAnimationDuration 0.25f
@@ -236,7 +237,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                         });
                     }
                 }];
-
+                
                 if (self.immediatelyLoadCellImages) {
                     [imageLoadOperation start]; // start directly.
                 }else {
@@ -252,12 +253,15 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
         NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
         [self updatePageLabel]; // create lazily
         self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
+        /*
         // Remove the unwanted "zzz" from the title which was appended earlier for showing some pdfs at end
         if ([self.pageLabel.text rangeOfString:@"zzz"].location != NSNotFound) {
             NSMutableString *title = [self.pageLabel.text mutableCopy];
             [title replaceOccurrencesOfString:@"zzz" withString:@"" options:NSLiteralSearch range:NSMakeRange(0, title.length)];
             self.pageLabel.text = title;
         }
+         */
+        self.pageLabel.text = [UIAPPDelegate removeZZZ:self.pageLabel.text];
         [self updatePageLabel];
         self.accessibilityLabel = self.pageLabel.text;
     }
