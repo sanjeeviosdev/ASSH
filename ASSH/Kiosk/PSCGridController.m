@@ -302,17 +302,28 @@
      //UIImage *linkBtnImage = [UIImage imageNamed:@"footerlogo.png"];
     //[self.linkButton setBackgroundImage:linkBtnImage forState:UIControlStateNormal];
     [self.linkButton setTitle:@"Tap to Find a Hand Surgeon in your area." forState:UIControlStateNormal];
-    [self.linkButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.linkButton addTarget:self action:@selector(openLinkAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.linkButton.tag=90000;
     self.linkButton.frame = CGRectMake(0, 0, 350, 44);
     self.link = [[UIBarButtonItem alloc] initWithCustomView:self.linkButton];
     self.logoButton=[[UIButton alloc] init];
+    
     UIImage *logoImage = [UIImage imageNamed:@"logoImage.png"];
     [self.logoButton setImage:logoImage forState:UIControlStateNormal];
     [self.logoButton setFrame:CGRectMake(0,0, 112, 40)];
-    [self.logoButton addTarget:self action:@selector(openLinkAction) forControlEvents:UIControlEventTouchUpInside];
-     self.logo = [[UIBarButtonItem alloc] initWithCustomView:self.logoButton];
-    [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo, nil]];
     
+    [self.logoButton addTarget:self action:@selector(openLinkAction:) forControlEvents:UIControlEventTouchUpInside];
+     self.logo = [[UIBarButtonItem alloc] initWithCustomView:self.logoButton];
+    
+   
+     UIButton *sitelinkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+     [sitelinkButton setTitle:@"www.handcare.org" forState:UIControlStateNormal];
+    [sitelinkButton addTarget:self action:@selector(openLinkAction:) forControlEvents:UIControlEventTouchUpInside];
+    sitelinkButton.tag=90001;
+    sitelinkButton.frame = CGRectMake(0, 0, 350, 44);
+    self.siteLink = [[UIBarButtonItem alloc] initWithCustomView:sitelinkButton];
+    [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo,self.siteLink, nil]];
+
 
 
     // Add the search bar.
@@ -345,10 +356,19 @@
 }
 
 
--(void)openLinkAction
+-(void)openLinkAction:(id)Sender
+
 {
-    
+    UIButton *btn=(UIButton *)Sender;
     OpenLinkViewController *openLink=[[OpenLinkViewController alloc] initWithNibName:@"OpenLinkViewController" bundle:nil];
+    if(btn.tag==90001)
+    {
+        openLink.urlStr=@"http://www.handcare.org";
+ 
+    }
+    else
+        openLink.urlStr=@"http://www.assh.org/Public/Pages/HandSurgeons.aspx";
+
     
     [self.navigationController pushViewController:openLink animated:YES];
 }
@@ -1705,14 +1725,14 @@ return (UICollectionViewCell *)cell;
         (UIInterfaceOrientationLandscapeRight == orientation)) {
         self.navigationController.navigationBar.frame = CGRectMake(0, 20, 1024, 44);
         [self.tools setFrame:CGRectMake(0, 0, 1024, 44)];
-        [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.bigspacer,self.bigspacer, self.logo, nil]];
+        [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.bigspacer,self.bigspacer, self.logo,self.bigspacer,self.siteLink, nil]];
         self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
 
 
     } else {
         self.navigationController.navigationBar.frame = CGRectMake(0, 20, 768, 44);
         [self.tools setFrame:CGRectMake(0, 0, 768, 44)];
-        [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo, nil]];
+        [self.bottomToolbar setItems:[NSArray arrayWithObjects: self.link,self.logo,self.spacer,self.siteLink, nil]];
         self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
 
 
