@@ -1258,12 +1258,16 @@ if([cell.contentView subviews].count>0)
         if (self.clearPressed==YES) {
             
         
-            [cell removeGestureRecognizer:self.longPress];
+            //[cell removeGestureRecognizer:self.longPress];
             
         }
 
         
         }
+    else
+    {
+       [cell removeGestureRecognizer:self.longPress]; 
+    }
     
     
              self.markedMags = [NSMutableArray new];
@@ -1287,6 +1291,9 @@ return (UICollectionViewCell *)cell;
 
 - (void)longPressItem:(UILongPressGestureRecognizer*)gesture  {
     if ( gesture.state == UIGestureRecognizerStateEnded ) {
+        
+        if ([UIAPPDelegate isMyTopic]){
+
         
         NSLog(@"cell tag==%d",gesture.view.tag) ;
         
@@ -1317,7 +1324,7 @@ return (UICollectionViewCell *)cell;
      [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.bigspacer, self.biggerSpacer,self.spacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
          }
       
-        
+        }
              
     }
 }
