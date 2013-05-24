@@ -1353,13 +1353,17 @@ return (UICollectionViewCell *)cell;
 {
     UIButton *addBtn=(UIButton *)Sender;
     NSInteger itemIndex=addBtn.tag-1000;
+    
     if (addBtn.selected==NO)
     {
         [addBtn setImage:[UIImage imageNamed:@"pdf-correct.png"] forState:UIControlStateNormal];
         UIButton *removeBtn=(UIButton *)[self.view viewWithTag:addBtn.tag+1000];
         removeBtn.hidden=NO;
         NSString *fileName1= [_filteredData[itemIndex] fileName];
-        [self.sharePdfArray addObject:fileName1];
+        if ([self.sharePdfArray containsObject:fileName1] == NO) {
+            [self.sharePdfArray addObject:fileName1];
+        }
+    
     }
     
 }
