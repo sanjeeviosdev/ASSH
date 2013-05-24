@@ -10,5 +10,6 @@
 
 @interface OpenLinkViewController : UIViewController
 @property(nonatomic,weak) IBOutlet UIWebView *webView;
+@property(nonatomic,weak) NSString *urlStr;
 
 @end

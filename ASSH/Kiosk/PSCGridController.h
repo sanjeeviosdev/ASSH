@@ -53,6 +53,8 @@
 @property(nonatomic,strong)UISearchBar *searchBar;
 @property(nonatomic,strong)UIBarButtonItem *list;
 @property(nonatomic,strong)UIBarButtonItem *link;
+@property(nonatomic,strong)UIBarButtonItem *siteLink;
+
 @property(nonatomic,strong)UIButton *linkButton;
 @property(nonatomic,strong)UIButton *logoButton;
 @property(nonatomic,strong)UIBarButtonItem *logo;

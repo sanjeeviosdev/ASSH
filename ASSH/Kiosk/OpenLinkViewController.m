@@ -25,11 +25,16 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+   [super viewDidLoad];
     self.title = @"ASSH";
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.assh.org/Public/Pages/HandSurgeons.aspx"]];
     
+    UIBarButtonItem *barbutton=[[UIBarButtonItem alloc]initWithTitle:@"done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+    
+    self.navigationItem.leftBarButtonItem=barbutton;
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
     [self.webView loadRequest:request];
+    
+    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -37,6 +42,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)done
+{
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

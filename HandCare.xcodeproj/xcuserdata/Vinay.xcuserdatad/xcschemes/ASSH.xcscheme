@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A1C224121709DF58002FF817"
                BuildableName = "Hand care.app"
-               BlueprintName = "Hand care"
-               ReferencedContainer = "container:Hand care.xcodeproj">
+               BlueprintName = "HandCare"
+               ReferencedContainer = "container:HandCare.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1C224121709DF58002FF817"
             BuildableName = "Hand care.app"
-            BlueprintName = "Hand care"
-            ReferencedContainer = "container:Hand care.xcodeproj">
+            BlueprintName = "HandCare"
+            ReferencedContainer = "container:HandCare.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -53,8 +53,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1C224121709DF58002FF817"
             BuildableName = "Hand care.app"
-            BlueprintName = "Hand care"
-            ReferencedContainer = "container:Hand care.xcodeproj">
+            BlueprintName = "HandCare"
+            ReferencedContainer = "container:HandCare.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,8 +71,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A1C224121709DF58002FF817"
             BuildableName = "Hand care.app"
-            BlueprintName = "Hand care"
-            ReferencedContainer = "container:Hand care.xcodeproj">
+            BlueprintName = "HandCare"
+            ReferencedContainer = "container:HandCare.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

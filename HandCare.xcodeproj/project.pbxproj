@@ -324,14 +324,14 @@
 		A1B00B3B1734379F00E94261 /* share12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share12.png; sourceTree = "<group>"; };
 		A1BE06591749225100C6CF7E /* CustomNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationController.h; sourceTree = "<group>"; };
 		A1BE065A1749226100C6CF7E /* CustomNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationController.m; sourceTree = "<group>"; };
-		A1C224131709DF58002FF817 /* Hand care.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hand care.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1C224131709DF58002FF817 /* HandCare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandCare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C224161709DF58002FF817 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A1C224181709DF58002FF817 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A1C2241A1709DF58002FF817 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		A1C2241E1709DF58002FF817 /* Hand care-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Hand care-Info.plist"; sourceTree = "<group>"; };
+		A1C2241E1709DF58002FF817 /* HandCare-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HandCare-Info.plist"; sourceTree = "<group>"; };
 		A1C224201709DF58002FF817 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A1C224221709DF58002FF817 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A1C224241709DF58002FF817 /* Hand care-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hand care-Prefix.pch"; sourceTree = "<group>"; };
+		A1C224241709DF58002FF817 /* HandCare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HandCare-Prefix.pch"; sourceTree = "<group>"; };
 		A1C224251709DF58002FF817 /* ASSHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASSHAppDelegate.h; sourceTree = "<group>"; };
 		A1C224261709DF58002FF817 /* ASSHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASSHAppDelegate.m; sourceTree = "<group>"; };
 		A1C74C76173547BD004181D3 /* help1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help1.png; sourceTree = "<group>"; };
@@ -654,7 +654,7 @@
 		A1C224141709DF58002FF817 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1C224131709DF58002FF817 /* Hand care.app */,
+				A1C224131709DF58002FF817 /* HandCare.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -712,10 +712,10 @@
 				A1E6D18A17442DD400C26790 /* Icon-72@2x.png */,
 				A1F58E51170CA78400377A4B /* ASSH_1.png */,
 				A15FEA2E174AA9AA001DC4B6 /* Default-Landscape~ipad.png */,
-				A1C2241E1709DF58002FF817 /* Hand care-Info.plist */,
+				A1C2241E1709DF58002FF817 /* HandCare-Info.plist */,
 				A1C2241F1709DF58002FF817 /* InfoPlist.strings */,
 				A1C224221709DF58002FF817 /* main.m */,
-				A1C224241709DF58002FF817 /* Hand care-Prefix.pch */,
+				A1C224241709DF58002FF817 /* HandCare-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -809,9 +809,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1C224121709DF58002FF817 /* Hand care */ = {
+		A1C224121709DF58002FF817 /* HandCare */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1C224301709DF58002FF817 /* Build configuration list for PBXNativeTarget "Hand care" */;
+			buildConfigurationList = A1C224301709DF58002FF817 /* Build configuration list for PBXNativeTarget "HandCare" */;
 			buildPhases = (
 				A1C2240F1709DF58002FF817 /* Sources */,
 				A1C224101709DF58002FF817 /* Frameworks */,
@@ -821,9 +821,9 @@
 			);
 			dependencies = (
 			);
-			name = "Hand care";
+			name = HandCare;
 			productName = ASSH;
-			productReference = A1C224131709DF58002FF817 /* Hand care.app */;
+			productReference = A1C224131709DF58002FF817 /* HandCare.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -836,7 +836,7 @@
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = ASSH;
 			};
-			buildConfigurationList = A1C2240E1709DF58002FF817 /* Build configuration list for PBXProject "Hand care" */;
+			buildConfigurationList = A1C2240E1709DF58002FF817 /* Build configuration list for PBXProject "HandCare" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -848,7 +848,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1C224121709DF58002FF817 /* Hand care */,
+				A1C224121709DF58002FF817 /* HandCare */,
 			);
 		};
 /* End PBXProject section */
@@ -1119,10 +1119,10 @@
 					"\"$(SRCROOT)/Vendor/HockeySDK.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ASSH/Hand care-Prefix.pch";
-				INFOPLIST_FILE = "ASSH/Hand care-Info.plist";
+				GCC_PREFIX_HEADER = "ASSH/HandCare-Prefix.pch";
+				INFOPLIST_FILE = "ASSH/HandCare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Hand care";
+				PRODUCT_NAME = HandCare;
 				PROVISIONING_PROFILE = "4EFCE399-0095-4E65-B8D6-F07C6E319FDE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4EFCE399-0095-4E65-B8D6-F07C6E319FDE";
 				VALID_ARCHS = armv7;
@@ -1143,10 +1143,10 @@
 					"\"$(SRCROOT)/Vendor/HockeySDK.embeddedframework\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ASSH/Hand care-Prefix.pch";
-				INFOPLIST_FILE = "ASSH/Hand care-Info.plist";
+				GCC_PREFIX_HEADER = "ASSH/HandCare-Prefix.pch";
+				INFOPLIST_FILE = "ASSH/HandCare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "Hand care";
+				PRODUCT_NAME = HandCare;
 				PROVISIONING_PROFILE = "4EFCE399-0095-4E65-B8D6-F07C6E319FDE";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4EFCE399-0095-4E65-B8D6-F07C6E319FDE";
 				VALID_ARCHS = armv7;
@@ -1157,7 +1157,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1C2240E1709DF58002FF817 /* Build configuration list for PBXProject "Hand care" */ = {
+		A1C2240E1709DF58002FF817 /* Build configuration list for PBXProject "HandCare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1C2242E1709DF58002FF817 /* Debug */,
@@ -1166,7 +1166,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1C224301709DF58002FF817 /* Build configuration list for PBXNativeTarget "Hand care" */ = {
+		A1C224301709DF58002FF817 /* Build configuration list for PBXNativeTarget "HandCare" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A1C224311709DF58002FF817 /* Debug */,
