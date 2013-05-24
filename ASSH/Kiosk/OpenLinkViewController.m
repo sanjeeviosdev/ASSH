@@ -28,7 +28,7 @@
    [super viewDidLoad];
     self.title = @"ASSH";
     
-    UIBarButtonItem *barbutton=[[UIBarButtonItem alloc]initWithTitle:@"done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
+    UIBarButtonItem *barbutton=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(done)];
     
     self.navigationItem.leftBarButtonItem=barbutton;
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]];
