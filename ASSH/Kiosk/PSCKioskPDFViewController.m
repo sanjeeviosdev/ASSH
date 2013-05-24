@@ -121,7 +121,7 @@
         if ([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
             mailController.mailComposeDelegate = self;
-            NSString * pdfname=@"";
+            //NSString * pdfname=@"";
                 
                 NSString *fileName = [self.magazine fileName];
                 
@@ -143,9 +143,9 @@
                 NSData *pdfData = [NSData dataWithContentsOfFile:FilePath];
                 [mailController addAttachmentData:pdfData mimeType:@"application/pdf"fileName:fileName];
             
-            pdfname = [NSString stringWithFormat:@"%@.",pdfname];
-            pdfname = [pdfname stringByReplacingOccurrencesOfString:@", ." withString:@""];
-            [mailController setSubject:pdfname];
+            //pdfname = [NSString stringWithFormat:@"%@.",pdfname];
+            //pdfname = [pdfname stringByReplacingOccurrencesOfString:@", ." withString:@""];
+            [mailController setSubject:fileName];
             NSString *mailBody =   [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailBody"];
             
             NSString *mailSignature = [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailSignature"];
