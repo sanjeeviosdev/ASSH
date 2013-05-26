@@ -1173,7 +1173,9 @@
     }else {
         _filteredData = [PSCStoreManager sharedStoreManager].magazineFolders;
     }
-    
+    NSSortDescriptor *sorter = [[NSSortDescriptor alloc] initWithKey:@"UID" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)];
+    NSArray *sortDescriptors = [NSArray arrayWithObject: sorter];
+    _filteredData = [_filteredData sortedArrayUsingDescriptors:sortDescriptors];
     
 //    if ([UIAPPDelegate isMyTopic]) {
 //        self.markedMags = [NSMutableArray new];
