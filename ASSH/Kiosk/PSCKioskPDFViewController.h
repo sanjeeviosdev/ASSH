@@ -18,7 +18,10 @@
     UITextField *textfield;
     
       
+      
 }
+@property(nonatomic,assign)BOOL isShare;
+@property(nonatomic,assign)BOOL isSaveasDialogonShare;
 
 @property(nonatomic,strong) NSString *documentFileName;
 /// Referenced magazine; just a cast to .document.
