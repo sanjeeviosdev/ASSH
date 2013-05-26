@@ -233,9 +233,10 @@
     UIImage *helpBtnImage = [UIImage imageNamed:@"help.png"];
     helpBtn.userInteractionEnabled=YES;
 
-    [helpBtn setBackgroundImage:helpBtnImage forState:UIControlStateNormal];
+    //[helpBtn setBackgroundImage:helpBtnImage forState:UIControlStateNormal];
+    [helpBtn setImage:helpBtnImage forState:UIControlStateNormal];
     [helpBtn addTarget:self action:@selector(helpBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    helpBtn.frame = CGRectMake(0, 0, 28, 28);
+    helpBtn.frame = CGRectMake(0, 0, 32, 32);
     self.help = [[UIBarButtonItem alloc] initWithCustomView:helpBtn];
     
     [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.spacer,self.bigspacer,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
@@ -448,7 +449,10 @@
                [popoverController setPopoverContentSize:CGSizeMake(360.0f, popoverheight)];
             if (self.view.window != nil)
                 
-                [popoverController presentPopoverFromRect:CGRectMake(0, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            
+                [popoverController presentPopoverFromRect:CGRectMake(185, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+                
+                
             
         }else {
             [popoverController dismissPopoverAnimated:YES];
@@ -519,11 +523,8 @@
 
 }
 -(void)clearAction
-
 {
-
     self.longPressed=NO;
-
     self.clearPressed=YES;
     [self.sharePdfArray removeAllObjects];
      if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
@@ -534,6 +535,7 @@
          {
     
           [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer, self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+             
          }
      
    
@@ -649,11 +651,8 @@
 {
     
     self.markedTopics = [UIAPPDelegate fetchBookmarks];
-
     [popoverController dismissPopoverAnimated:YES];
-
     [[PSCStoreManager sharedStoreManager] loadMagazinesFromDisk];
-    
     [PSCStoreManager sharedStoreManager].delegate = self;
     
     // Ensure everything is up to date (we could change magazines in other controllers)
@@ -824,6 +823,7 @@
     self.markedTopics = [UIAPPDelegate fetchBookmarks];
 
     [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
+    [self updateGrid];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -846,6 +846,8 @@
            // [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_animationCellIndex inSection:0] atScrollPosition:PSTCollectionViewScrollPositionCenteredHorizontally animated:NO];
             
             [self.collectionView layoutSubviews]; // ensure cells are laid out
+            
+            
             /*
              // ensure object is visible
              BOOL isCellVisible = [self.gridView isCellVisibleAtIndex:_animationCellIndex partly:YES];
@@ -853,6 +855,7 @@
              [self.gridView scrollToObjectAtIndex:_animationCellIndex atScrollPosition:PSPDFGridViewScrollPositionTop animated:NO];
              [self.gridView layoutSubviews]; // ensure cells are laid out
              };*/
+
 
             // Convert the coordinates into view coordinate system.
             // We can't remember those, because the device might has been rotated.
@@ -1112,11 +1115,16 @@
 }
 
 - (BOOL)canEditCell:(PSCImageGridViewCell *)cell {
+    
     BOOL editing = self.isEditing;
     if (editing) {
-        if (cell.magazine) {
+        if (cell.magazine)
+        {
+            
             editing =  cell.magazine.isDownloading || (cell.magazine.isAvailable && cell.magazine.isDeletable);
-        }else {
+        }
+        else
+        {
             
             NSArray *fixedMagazines = [self.magazineFolder.magazines filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"isDeletable = NO || isAvailable = NO || isDownloading = YES"]];
             editing = [fixedMagazines count] == 0;
@@ -1203,6 +1211,7 @@
     
    // connect the delete button
     if ([[cell.deleteButton allTargets] count] == 0){
+        
         [cell.deleteButton addTarget:self action:@selector(processDeleteAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -1216,9 +1225,6 @@
     cell.tag=indexPath.item;
     
     
-    
-   
-
 if([cell.contentView subviews].count>0)
 {
    //for (int i=0; i < [[cell.contentView subviews] count];i++) {
@@ -1278,10 +1284,12 @@ if([cell.contentView subviews].count>0)
         if (self.clearPressed==YES) {
             
         
+              
             //[cell removeGestureRecognizer:self.longPress];
             
         }
 
+        
         
         }
     else
@@ -1290,13 +1298,16 @@ if([cell.contentView subviews].count>0)
     }
     
     
-             self.markedMags = [NSMutableArray new];
-          
+         // self.markedMags = [NSMutableArray new];
               PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
-                if([self.markedTopics containsObject:mag.fileName] == YES ) {
                     if (![mag.bookmarks count]==0)
                     {
+                if([self.markedTopics containsObject:mag.fileName] == YES ) {
                     
+                                               
+                        NSLog(@"indexPath==%d",indexPath.item);
+
+                        
                 UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
                     [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
                     bookmarkButton.tag=cell.tag+3000;
@@ -1307,6 +1318,7 @@ if([cell.contentView subviews].count>0)
 
 
 return (UICollectionViewCell *)cell;
+    
 }
 
 - (void)longPressItem:(UILongPressGestureRecognizer*)gesture  {
@@ -1322,7 +1334,8 @@ return (UICollectionViewCell *)cell;
         // Ensure everything is up to date (we could change magazines in other controllers)
         
         self.immediatelyLoadCellImages = YES;
-        [self diskDataLoaded]; // also reloads the grid
+        [self diskDataLoaded];
+          // also reloads the grid
         self.immediatelyLoadCellImages = NO;
         
         if (_animateViewWillAppearWithFade) {
@@ -1334,6 +1347,7 @@ return (UICollectionViewCell *)cell;
         [self updateGrid];
         
     self.longPressed=YES;
+            
          if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
          {
               [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
@@ -1351,6 +1365,7 @@ return (UICollectionViewCell *)cell;
 
 -(void)selectTopic:(UIButton * )Sender
 {
+    
     UIButton *addBtn=(UIButton *)Sender;
     NSInteger itemIndex=addBtn.tag-1000;
     
@@ -1589,6 +1604,7 @@ return (UICollectionViewCell *)cell;
 }
 
 - (void)openMagazine:(PSCMagazine *)magazine {
+    
     NSUInteger cellIndex = [self.magazineFolder.magazines indexOfObject:magazine];
     if (cellIndex != NSNotFound) {
         [self openMagazine:magazine animated:YES cellIndex:cellIndex];
@@ -1615,7 +1631,8 @@ return (UICollectionViewCell *)cell;
     }
 }
 
-- (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine {
+- (void)magazineStoreMagazineAdded:(PSCMagazine *)magazine
+{
     if (self.isSearchModeActive) return; // don't animate if we're in search mode
 
     if (PSPDFIsCrappyDevice()) {
