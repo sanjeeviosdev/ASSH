@@ -170,6 +170,7 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 #pragma mark - Public
 
 - (void)setMagazine:(PSCMagazine *)magazine {
+    NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
     if (self.magazineFolder) {
         self.magazineFolder = nil;
     }
@@ -192,8 +193,8 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             // First, check memory.
             UIImage *memoryImage = [PSPDFCache.sharedCache imageFromDocument:magazine andPage:0 withSize:self.frame.size options:PSPDFCacheOptionDiskLoadSync|PSPDFCacheOptionRenderSkip];
             [self setImage:memoryImage animated:NO];
-            if (magazine.isTitleLoaded) self.magazineTitle = magazine.title;
-
+            //if (magazine.isTitleLoaded) self.magazineTitle = magazine.title;
+            self.magazineTitle = pageLabelText;
             // If memory doesn't return anything, queue up here.
             if (!memoryImage) {
                 NSBlockOperation *imageLoadOperation = [NSBlockOperation new];
@@ -204,8 +205,8 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
                         _magazineOperationImage = [magazine coverImageForSize:self.frame.size];
                     }
                     // Also may be slow, parsing the title from PDF metadata.
-                    self.magazineTitle = magazine.title;
-
+                    //self.magazineTitle = magazine.title;
+                    self.magazineTitle = pageLabelText;
                     BOOL imageLoadedFromWeb = NO;
                     if (!_magazineOperationImage && !strongImageLoadOperation.isCancelled) {
                         // try to download image
@@ -250,9 +251,11 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
             [self darkenView:!magazine.isAvailable animated:NO];
         }
 
-        NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
+        
         [self updatePageLabel]; // create lazily
-        self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
+        //self.pageLabel.text = [pageLabelText length] ? pageLabelText : magazine.title;
+        self.pageLabel.text = pageLabelText;
+        PSCLog(@"Pagelabeltext is : %@, Magazine title : %@", pageLabelText,magazine.title);
         /*
         // Remove the unwanted "zzz" from the title which was appended earlier for showing some pdfs at end
         if ([self.pageLabel.text rangeOfString:@"zzz"].location != NSNotFound) {
@@ -481,12 +484,13 @@ static void PSPDFDispatchIfNotOnMainThread(dispatch_block_t block) {
 
 - (void)didCacheImage:(UIImage *)image fromDocument:(PSPDFDocument *)document andPage:(NSUInteger)page withSize:(CGSize)size {
     PSCMagazine *magazine = self.magazine ?: self.magazineFolder.firstMagazine;
-
+    NSString *pageLabelText = PSPDFStripPDFFileType([magazine.files ps_firstObject]);
     if (magazine == document && page == 0 && PSPDFSizeAspectRatioEqualToSize(self.frame.size, size)) {
         [self setImage:image animated:YES];
 
         if (magazine.isTitleLoaded) {
-            _magazineTitle = magazine.title;
+            //_magazineTitle = magazine.title;
+            _magazineTitle = pageLabelText;
             self.pageLabel.text = _magazineTitle;
         }
     }
