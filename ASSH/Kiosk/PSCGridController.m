@@ -1249,7 +1249,11 @@ if([cell.contentView subviews].count>0)
             
         }
     
-    
+    for (UIView *subview in [cell.contentView subviews]) {
+        if (subview.tag >= 3000) {
+            [subview removeFromSuperview];
+        }
+    }
     
     //}
 }
@@ -1300,25 +1304,20 @@ if([cell.contentView subviews].count>0)
     }
     
     
-         // self.markedMags = [NSMutableArray new];
-            PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
-            if ([mag.bookmarks count]!=0)
-            {
-                //if([self.markedTopics containsObject:mag.fileName] == YES ) {
-                NSLog(@"indexPath==%d",indexPath.item);
-                UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
-                [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
-                bookmarkButton.tag=3000;
-                [cell.contentView addSubview:bookmarkButton];
-                bookmarkButton.userInteractionEnabled=NO;
-            }
-            else
-            {
-                [[cell.contentView viewWithTag:3000] removeFromSuperview] ;
-            }
-               //}
-
-
+    self.markedMags = [NSMutableArray new];
+    
+    PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
+    if([self.markedTopics containsObject:mag.fileName] == YES ) {
+        if (![mag.bookmarks count]==0)
+        {
+            
+            UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
+            [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
+            bookmarkButton.tag=cell.tag + 3000;
+            [cell.contentView addSubview:bookmarkButton];
+            bookmarkButton.userInteractionEnabled=NO;
+        }
+    }
 return (UICollectionViewCell *)cell;
     
 }
