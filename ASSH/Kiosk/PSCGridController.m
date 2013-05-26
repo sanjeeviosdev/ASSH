@@ -1231,7 +1231,7 @@ if([cell.contentView subviews].count>0)
         
         UIButton *btn1=(UIButton *)[self.view viewWithTag:cell.tag+1000];
         UIButton *btn2=(UIButton *)[self.view viewWithTag:cell.tag+2000];
-         UIButton *btn3=(UIButton *)[self.view viewWithTag:cell.tag+3000];
+        UIButton *btn3=(UIButton *)[self.view viewWithTag:cell.tag+3000];
         if (btn1) {
             [btn1 removeFromSuperview];
             
@@ -1241,11 +1241,11 @@ if([cell.contentView subviews].count>0)
             [btn2 removeFromSuperview];
             
         }
-    if (btn3){
-        
-        [btn3 removeFromSuperview];
-        
-    }
+        if (btn3){
+            
+            [btn3 removeFromSuperview];
+            
+        }
     
     
     
@@ -1299,22 +1299,22 @@ if([cell.contentView subviews].count>0)
     
     
          // self.markedMags = [NSMutableArray new];
-              PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
-                    if (![mag.bookmarks count]==0)
-                    {
-                if([self.markedTopics containsObject:mag.fileName] == YES ) {
-                    
-                                               
-                        NSLog(@"indexPath==%d",indexPath.item);
-
-                        
+            PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
+            if ([mag.bookmarks count]!=0)
+            {
+                //if([self.markedTopics containsObject:mag.fileName] == YES ) {
+                NSLog(@"indexPath==%d",indexPath.item);
                 UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
-                    [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
-                    bookmarkButton.tag=cell.tag+3000;
-                    [cell.contentView addSubview:bookmarkButton];
-                    bookmarkButton.userInteractionEnabled=NO;
-                    }
-               }
+                [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
+                bookmarkButton.tag=3000;
+                [cell.contentView addSubview:bookmarkButton];
+                bookmarkButton.userInteractionEnabled=NO;
+            }
+            else
+            {
+                [[cell.contentView viewWithTag:3000] removeFromSuperview] ;
+            }
+               //}
 
 
 return (UICollectionViewCell *)cell;
