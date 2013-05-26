@@ -261,7 +261,11 @@
         {
             if (!self.isSaveasDialogonShare==YES)
             {
-                FolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
+                if (self.isShared==YES) {
+                    FolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+                }
+                else
+                    FolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
             }
             else
             {
@@ -271,7 +275,9 @@
             }
             
         }
+        
         NSString* FilePath = [FolderPath stringByAppendingPathComponent:fileName];
+        
         
         
         NSData *pdfData = [NSData dataWithContentsOfFile:FilePath];
@@ -301,6 +307,7 @@
         [self.popoverController dismissPopoverAnimated:YES];
         self.popoverController.delegate=nil;
         
+        
     }
     else{
         UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Share" message:@"No mail client configured on this device. Kindly configure any mail id before using the share option" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
@@ -308,7 +315,91 @@
         [alert show];
         
     }
+    
+    
+    
+    
 }
+
+
+//-(void)openMailComposer
+//{
+//    if ([MFMailComposeViewController canSendMail]) {
+//        MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
+//        mailController.mailComposeDelegate = self;
+//        NSString * pdfname=@"";
+//        NSString *fileName;
+//        if (self.isSaveasDialogonShare==YES)
+//        {
+//            //NSString *fileName = [self.magazine fileName];
+//            fileName=[textfield.text stringByAppendingString:@".pdf"];
+//            //self.isSaveasDialogonShare=NO;
+//        }
+//        else
+//        {
+//            
+//            fileName = [self.magazine fileName];
+//        }
+//        
+//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        NSString *documentsDirectory = [paths objectAtIndex:0];
+//        NSString *FolderPath;
+//        if ([UIAPPDelegate isMyTopic])
+//        {
+//            FolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+//        }
+//        else
+//        {
+//            if (!self.isSaveasDialogonShare==YES)
+//            {
+//                FolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
+//            }
+//            else
+//            {
+//                
+//                FolderPath = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+//                self.isSaveasDialogonShare=NO;
+//            }
+//            
+//        }
+//        NSString* FilePath = [FolderPath stringByAppendingPathComponent:fileName];
+//        
+//        
+//        NSData *pdfData = [NSData dataWithContentsOfFile:FilePath];
+//        [mailController addAttachmentData:pdfData mimeType:@"application/pdf"fileName:fileName];
+//        
+//        //pdfname = [NSString stringWithFormat:@"%@.",pdfname];
+//        //pdfname = [pdfname stringByReplacingOccurrencesOfString:@", ." withString:@""];
+//        [mailController setSubject:fileName];
+//        NSString *mailBody =   [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailBody"];
+//        
+//        NSString *mailSignature = [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailSignature"];
+//        if([mailBody isEqualToString:@""]||mailBody==nil||[mailBody isEqualToString:@"(null)"])
+//        {
+//            mailBody=@"This mail is sent by ASSH Application";
+//        }
+//        if([mailSignature isEqualToString:@""]||mailSignature==nil||[mailSignature isEqualToString:@"(null)"])
+//            
+//        {
+//            mailSignature=@"";
+//        }
+//        NSString *finalEmailbody=[NSString stringWithFormat:@"%@ \n\n\n %@ ",mailBody,mailSignature];
+//        
+//        [mailController setMessageBody:finalEmailbody isHTML:NO];
+//        
+//        
+//        [self presentViewController:mailController animated:YES completion:nil];
+//        [self.popoverController dismissPopoverAnimated:YES];
+//        self.popoverController.delegate=nil;
+//        
+//    }
+//    else{
+//        UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Share" message:@"No mail client configured on this device. Kindly configure any mail id before using the share option" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//        
+//        [alert show];
+//        
+//    }
+//}
 
 -(void)home
 {
@@ -791,7 +882,6 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
     
 }
 
-
 - (void) alertView:(UIAlertView *) alertSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
@@ -859,6 +949,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
                 }
                 // Finally update the fileURL, this will clear the current document cache.
                 self.document.fileURL = newURL;
+                self.title = [NSString stringWithFormat:@"%@", [[self.document.fileURL lastPathComponent] stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
             }
             if (![self isShare]==YES) {
                 [self close];
@@ -878,54 +969,59 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         {
             
             
-            NSString *resourceDBFolderPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Samples"];
             
+            NSString *newPath1;
+            newPath1=[documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+            newPath1 = [newPath1 stringByAppendingPathComponent:filename];
+            NSURL *newURL1 = [NSURL fileURLWithPath:newPath1];
             
-            resourceDBFolderPath=[resourceDBFolderPath stringByAppendingPathComponent:str];
-            // new file path to store
-            NSString *newPath=[documentDBFolderPathinMyTopic stringByAppendingPathComponent:filename];
-            NSURL *newUrl=[NSURL URLWithString:newPath];
-            self.document.fileURL = newUrl;
-            
-            
-            if (![fileManager fileExistsAtPath:newPath]) {
-                [self saveAnnotations];
+            NSError *error;
+            if (![[NSFileManager defaultManager] copyItemAtURL:self.document.fileURL toURL:newURL1 error:&error]) {
+                PSPDFLogWarning(@"Failed to copy file to %@: %@", newURL1.path, [error localizedDescription]);
+            }else {
                 
-                [fileManager copyItemAtPath:currntPath toPath:newPath error:&error];
-                [fileManager removeItemAtPath:currntPath error:&error];
-                [fileManager copyItemAtPath:resourceDBFolderPath toPath:currntPath error:&error];
-                NSURL *newUrl=[NSURL URLWithString:newPath];
-                self.document.fileURL = newUrl;
+                // Since the annotation has already been edited, we copy the file *before* it will be saved
+                // then save the current state and switch out the documents.
+                
+                
+                if (![self.document saveChangedAnnotationsWithError:&error]) {
+                    PSPDFLogWarning(@"Failed to save annotations: %@", [error localizedDescription]);
+                }
+                NSURL *tmpURL = [newURL1 URLByAppendingPathExtension:@"temp"];
+                if (![[NSFileManager defaultManager] moveItemAtURL:self.document.fileURL toURL:tmpURL error:&error]) {
+                    PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                }
+                if (![[NSFileManager defaultManager] moveItemAtURL:newURL1 toURL:self.document.fileURL error:&error]) {
+                    PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                }
+                if (![[NSFileManager defaultManager] moveItemAtURL:tmpURL toURL:newURL1 error:&error]) {
+                    PSPDFLogWarning(@"Failed to move file: %@", [error localizedDescription]); return;
+                }
+                // Finally update the fileURL, this will clear the current document cache.
+                self.document.fileURL = newURL1;
+                self.title = [NSString stringWithFormat:@"%@", [[self.document.fileURL lastPathComponent] stringByReplacingOccurrencesOfString:@".pdf" withString:@""]];
+                
                 if (![self isShare]==YES) {
                     [self close];
                 }
                 else
                 {
+                    
                     self.isSaveasDialogonShare=YES;
                     [self openMailComposer];
                 }
-                ;
-                
             }
-            else
-            {
-                
-                
-                UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Save as" message:@"File already exist with same name, Please choose different name" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-                [alert show];
-                
-            }
-            
-            
             
             
         }
-        
+        self.isShared=YES;
         // hide activity indicator
         [MBProgressHUD hideHUDForView:self.view animated:NO];
         
     }
 }
+
+
 
 
 

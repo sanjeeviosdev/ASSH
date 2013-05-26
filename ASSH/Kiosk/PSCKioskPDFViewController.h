@@ -33,5 +33,6 @@
 
 @property(nonatomic,strong)SharePopoverView *sharePopover;
 @property(nonatomic,assign) BOOL isSelectedMyTopics;
+@property(nonatomic,assign) BOOL isShared;
 
 @end
