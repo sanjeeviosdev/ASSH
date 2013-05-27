@@ -1491,6 +1491,64 @@ return (UICollectionViewCell *)cell;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
   //  NSLog(@"sanjeev");
+    
+    if ([UIAPPDelegate isMyTopic]==NO) {
+        
+        {
+            
+            PSCMagazine *magazine;
+            PSCMagazineFolder *folder;
+            
+            if (self.magazineFolder) {
+                folder = self.magazineFolder;
+                magazine = (_filteredData)[indexPath.item];
+            }else {
+                folder = (_filteredData)[indexPath.item];
+                magazine = [folder firstMagazine];
+            }
+            
+            PSCLog(@"Magazine selected: %d %@", indexPath.item, magazine);
+            
+            if (folder.magazines.count == 1 || self.magazineFolder) {
+                if (magazine.isDownloading) {
+                    [[[UIAlertView alloc] initWithTitle:PSPDFAppName()
+                                                message:_(@"Item is currently downloading.")
+                                               delegate:nil
+                                      cancelButtonTitle:_(@"OK")
+                                      otherButtonTitles:nil] show];
+                } else if (!magazine.isAvailable && !magazine.isDownloading) {
+                    if (!self.isEditing) {
+                        [[PSCStoreManager sharedStoreManager] downloadMagazine:magazine];
+                    }
+                } else {
+                    [self openMagazine:magazine animated:YES cellIndex:indexPath.item];
+                }
+            }else {
+                PSCGridController *gridController = [[PSCGridController alloc] initWithMagazineFolder:folder];
+                
+                
+                
+                
+                // A full-page-fade animation doesn't work very well on iPad. (under a ux aspect; technically it's fine)
+                if (!PSIsIpad()) {
+                    CATransition *transition = PSPDFFadeTransitionWithDuration(0.3f);
+                    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+                    [self.navigationController pushViewController:gridController animated:NO];
+                    
+                }else {
+                    [self.navigationController pushViewController:gridController animated:YES];
+                }
+                
+                
+            }
+            
+            
+            
+        }
+        
+    }
+    else{
+    
     if (self.longPressed==NO) {
 
     PSCMagazine *magazine;
@@ -1541,6 +1599,7 @@ return (UICollectionViewCell *)cell;
        
 
            
+    }
     }
 }
 
