@@ -379,7 +379,7 @@
         
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         }
         
         else {
@@ -396,18 +396,18 @@
             
              if (self.longPressed==YES)
              {
-                 [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+                 [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
              }
             else
             {
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             }
             
         }
         
         else {
             if (self.longPressed==YES) {
-                [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+                [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer,  self.share, self.clear,self.bigspacer,self.biggerSpacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
 
                 
             }
@@ -448,10 +448,15 @@
             else
                [popoverController setPopoverContentSize:CGSizeMake(360.0f, popoverheight)];
             if (self.view.window != nil)
-                
+                 if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             
+                [popoverController presentPopoverFromRect:CGRectMake(175, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+                 }
+            else
+            {
                 [popoverController presentPopoverFromRect:CGRectMake(185, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-                
+            }
+            
                 
             
         }else {
@@ -529,7 +534,7 @@
     [self.sharePdfArray removeAllObjects];
      if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
          
-           [self.tools setItems:[NSArray arrayWithObjects:self.segment, self.spacer,self.list,self.spacer, self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+           [self.tools setItems:[NSArray arrayWithObjects:self.segment,self.list,self.spacer, self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
          }
          else
          {
@@ -569,7 +574,7 @@
             
             if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
             {
-                [popoverController presentPopoverFromRect:CGRectMake(375, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+                [popoverController presentPopoverFromRect:CGRectMake(365, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
             }
                  else
                  {
@@ -599,11 +604,11 @@
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
         {
         
-        [popoverController presentPopoverFromRect:CGRectMake(660, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popoverController presentPopoverFromRect:CGRectMake(750, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }
         else
         {
-          [popoverController presentPopoverFromRect:CGRectMake(900, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];  
+          [popoverController presentPopoverFromRect:CGRectMake(1000, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }
     }
     
@@ -628,7 +633,7 @@
             
             if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
             {
-            [popoverController presentPopoverFromRect:CGRectMake(415, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+            [popoverController presentPopoverFromRect:CGRectMake(405, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
             }
             else
             {
@@ -743,6 +748,9 @@
     if (segment.selectedSegmentIndex == 0) {
         [UIAPPDelegate setIsMyTopic:NO];
         
+        self.markedTopics = [UIAPPDelegate fetchBookmarks];
+
+        
         [[PSCStoreManager sharedStoreManager] loadMagazinesFromDisk];
         
         [PSCStoreManager sharedStoreManager].delegate = self;
@@ -765,6 +773,9 @@
     }
     else if (segment.selectedSegmentIndex == 1) {
         [UIAPPDelegate setIsMyTopic:YES];
+        
+        self.markedTopics = [UIAPPDelegate fetchBookmarks];
+
         [[PSCStoreManager sharedStoreManager] loadMagazinesFromDisk];
         
         [PSCStoreManager sharedStoreManager].delegate = self;
@@ -1011,7 +1022,9 @@
     });
     
     PSCKioskPDFViewController *pdfController = [[PSCKioskPDFViewController alloc] initWithDocument:magazine];
-    pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObjects: @(PSPDFOutlineBarButtonItemOptionAnnotations), nil];
+    
+    
+   pdfController.outlineButtonItem.availableControllerOptions = [NSOrderedSet orderedSetWithObjects: @(PSPDFOutlineBarButtonItemOptionAnnotations), nil];
     
         
     /*
@@ -1177,18 +1190,7 @@
     NSArray *sortDescriptors = [NSArray arrayWithObject: sorter];
     _filteredData = [_filteredData sortedArrayUsingDescriptors:sortDescriptors];
     
-//    if ([UIAPPDelegate isMyTopic]) {
-//        self.markedMags = [NSMutableArray new];
-//        NSArray *names = [self.markedTopics valueForKey:@"pdfName"];
-//        //return [self.markedTopics count];
-//        for (PSCMagazine * mag in _filteredData) {
-//            if([names containsObject:mag.fileName] == YES ) {
-//                [self.markedMags addObject:mag];
-//            }
-//        }
-//        _filteredData=[self.markedMags copy];
-//               
-//    }
+
     
     NSString *searchString = _searchBar.text;
     if ([searchString length]) { // title CONTAINS[cd] '%@' ||
@@ -1308,8 +1310,10 @@ if([cell.contentView subviews].count>0)
     
     PSCMagazine *mag=  [_filteredData objectAtIndex:indexPath.item];
     if([self.markedTopics containsObject:mag.fileName] == YES ) {
-        if (![mag.bookmarks count]==0)
-        {
+        //if ([mag.bookmarks count]>0)
+        //{
+        if (mag.bookmarksEnabled==YES) {
+            
             
             UIButton *bookmarkButton=[[UIButton alloc] initWithFrame:CGRectMake(5, 190, 30, 30)];
             [bookmarkButton setImage:[UIImage imageNamed:@"bookmark2.png"] forState:UIControlStateNormal];
@@ -1317,6 +1321,7 @@ if([cell.contentView subviews].count>0)
             [cell.contentView addSubview:bookmarkButton];
             bookmarkButton.userInteractionEnabled=NO;
         }
+       // }
     }
 return (UICollectionViewCell *)cell;
     
@@ -1351,7 +1356,7 @@ return (UICollectionViewCell *)cell;
             
          if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
          {
-              [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+              [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer, self.share,self.clear,self.bigspacer,self.spacer,self.spacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
              
          }
          else{
@@ -1829,7 +1834,7 @@ return (UICollectionViewCell *)cell;
     
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         //other codes
-        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.spacer,self.list,self.spacer,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer,self.spacer,self.spacer, self.bigspacer, self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         
         
     }
@@ -1843,7 +1848,7 @@ return (UICollectionViewCell *)cell;
     if (self.longPressed==YES) {
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             //other codes
-            [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.clear,self.spacer,self.spacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+            [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer,  self.share, self.clear,self.spacer,self.spacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
             
         }
         
@@ -1853,9 +1858,10 @@ return (UICollectionViewCell *)cell;
         }
     }
     else{
+        
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
         //other codes
-        [self.tools setItems:[NSArray arrayWithObjects: self.segment, self.spacer,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
+        [self.tools setItems:[NSArray arrayWithObjects: self.segment,self.list,self.spacer,  self.share, self.spacer,self.spacer,self.bigspacer,self.bigspacer,self.bookmark,self.setting,self.search,self.help ,nil] animated:NO];
         
     }
     
@@ -1865,6 +1871,7 @@ return (UICollectionViewCell *)cell;
     }
     }
 }
+    
      self.bottomToolbar.frame=CGRectMake(0, self.view.frame.size.height-44, self.view.frame.size.width,44);
     self.linkButton.frame = CGRectMake(0, 0, 350, 44);
 

@@ -10,6 +10,7 @@
 #import "PSCGridController.h"
 #import "CustomNavigationController.h"
 #import "Bookmarks.h"
+#import "MyBookmark.h"
 
 @implementation ASSHAppDelegate
 @synthesize navigationController;
@@ -17,7 +18,7 @@
 @synthesize isMyTopic;
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize persistentStoreCoordinator= _persistentStoreCoordinator;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -62,7 +63,7 @@
    // Changes done by Chandan to accomodate new requirement of keeping my topics separate
     NSString *documentDBFolderPathForTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
     
-    if (![fileManager fileExistsAtPath:documentDBFolderPathForTopic]) {
+    if (![fileManager fileExistsAtPath:documentDBFolderPathForTopic]){
         //Create Directory!
         [fileManager createDirectoryAtPath:documentDBFolderPathForTopic withIntermediateDirectories:NO attributes:nil error:&error];
     } else {
@@ -217,9 +218,18 @@
 // add bookmark to the topics or my topics
 -(void)addBookmark:(NSString *)book
 {
+    
+    
     NSError *error = nil;
-    Bookmarks *bookmark = [NSEntityDescription
+    MyBookmark *bookmark;
+    if ([self isMyTopic]) {
+        bookmark = [NSEntityDescription
+                               insertNewObjectForEntityForName:@"MyBookmark" inManagedObjectContext:self.managedObjectContext];
+    }
+    else{
+    bookmark = [NSEntityDescription
                           insertNewObjectForEntityForName:@"Bookmarks" inManagedObjectContext:self.managedObjectContext];
+    }
     
     bookmark.bookName = book;
     
@@ -231,7 +241,17 @@
 -(void)removeBookmark:(NSString *)book
 {
     
-    NSEntityDescription *productEntity=[NSEntityDescription entityForName:@"Bookmarks" inManagedObjectContext:[self managedObjectContext]];
+    NSEntityDescription *productEntity;
+    if ([self isMyTopic]) {
+        productEntity = [NSEntityDescription
+                    insertNewObjectForEntityForName:@"MyBookmark" inManagedObjectContext:self.managedObjectContext];
+    }
+    else{
+       productEntity=[NSEntityDescription entityForName:@"Bookmarks" inManagedObjectContext:[self managedObjectContext]];
+    }
+    
+    
+    
     NSFetchRequest *fetch=[[NSFetchRequest alloc] init];
     [fetch setEntity:productEntity];
     NSPredicate *p=[NSPredicate predicateWithFormat:@"bookName == %@",book];
@@ -257,8 +277,17 @@
 {
 NSError *error = nil;
 NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-NSEntityDescription *entity = [NSEntityDescription entityForName:@"Bookmarks"
-                                          inManagedObjectContext:self. managedObjectContext];
+    NSEntityDescription *entity;
+    if ([self isMyTopic]) {
+        entity = [NSEntityDescription entityForName:@"MyBookmark"
+                             inManagedObjectContext:self. managedObjectContext];
+
+    }
+    else{
+        entity = [NSEntityDescription entityForName:@"Bookmarks"
+                                                  inManagedObjectContext:self. managedObjectContext];
+
+    }
 [fetchRequest setEntity:entity];
 NSArray *fetchedObjects = [[self managedObjectContext] executeFetchRequest:fetchRequest error:&error];
 NSMutableArray *result=[[NSMutableArray alloc] init];

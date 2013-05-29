@@ -3,13 +3,17 @@
     <entity name="Bookmarks" representedClassName="Bookmarks" syncable="YES">
         <attribute name="bookName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="MyBookmark" representedClassName="MyBookmark" syncable="YES">
+        <attribute name="bookName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="MyTopics" representedClassName="MyTopics" syncable="YES">
         <attribute name="bookName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="indexOnPage" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MyTopics" positionX="160" positionY="192" width="128" height="90"/>
         <element name="Bookmarks" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="MyTopics" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="MyBookmark" positionX="160" positionY="192" width="128" height="60"/>
     </elements>
 </model>
