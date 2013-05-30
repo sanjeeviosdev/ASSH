@@ -498,7 +498,7 @@
          NSString *mailSignature = [[NSUserDefaults  standardUserDefaults]objectForKey:@"emailSignature"];
             if([mailBody isEqualToString:@""]||mailBody==nil||[mailBody isEqualToString:@"(null)"])
             {
-                mailBody=@"This mail is sent by ASSH Application";
+                mailBody=@"HandCare";
             }
             if([mailSignature isEqualToString:@""]||mailSignature==nil||[mailSignature isEqualToString:@"(null)"])
                    
