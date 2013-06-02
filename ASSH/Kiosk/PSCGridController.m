@@ -520,7 +520,7 @@
         }
     }
     else{
-        UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Share" message:@"Use this icon to attach multiple topics to the same email. Tap and hold a tile to get the + symbol on each, select the topics for sharing and tap this icon again to send." delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        UIAlertView *alert= [[UIAlertView alloc] initWithTitle:@"Share" message:@"Use this icon to attach multiple topics to the same email. Tap and hold a tile to get the + symbol on each, select the topics for sharing and tap this icon again to send." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         
         [alert show];
     }
