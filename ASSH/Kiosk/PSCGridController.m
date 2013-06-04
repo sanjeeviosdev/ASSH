@@ -255,7 +255,7 @@
 
 #endif
 
-    // Add global shadow.
+    //Add global shadow.
     CGFloat toolbarHeight = self.navigationController.navigationBar.frame.size.height;
     self.shadowView = [[PSCShadowView alloc] initWithFrame:CGRectMake(0, -toolbarHeight, self.view.bounds.size.width, toolbarHeight)];
     _shadowView.shadowOffset = toolbarHeight;
@@ -327,7 +327,7 @@
 
 
 
-    // Add the search bar.
+   // Add the search bar.
    // CGFloat searchBarWidth = 290.f;
 //    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectIntegral(CGRectMake((self.collectionView.bounds.size.width-searchBarWidth)/2, -44.f, searchBarWidth, 44.f))];
 //    _searchBar.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin;
@@ -597,17 +597,19 @@
     helpPopOver = [[HelpPopoverController alloc] initWithNibName:@"HelpPopoverController" bundle:nil];
     popoverController = [[UIPopoverController alloc] initWithContentViewController:helpPopOver];
     //[popoverController setDelegate:self];
-    [popoverController setPopoverContentSize:CGSizeMake(700.0f, 577.0f)];
     if (self.view.window != nil)
     {
         
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
         {
-        
+            [popoverController setPopoverContentSize:CGSizeMake(577.0f, 700.0f)];
+
         [popoverController presentPopoverFromRect:CGRectMake(750, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }
         else
         {
+            [popoverController setPopoverContentSize:CGSizeMake(700.0f, 558.0f)];
+
           [popoverController presentPopoverFromRect:CGRectMake(1000, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }
     }
@@ -1829,7 +1831,9 @@ return (UICollectionViewCell *)cell;
 
 -(void)orientation
 {
-    
+    [popoverController dismissPopoverAnimated:YES];
+    popoverController.delegate=nil;
+
     if (![UIAPPDelegate isMyTopic]) {
     
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {

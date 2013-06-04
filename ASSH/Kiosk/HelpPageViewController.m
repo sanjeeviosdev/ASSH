@@ -50,7 +50,26 @@ static NSArray *__pageControlColorList = nil;
 // Set the label and background color when the view has finished loading.
 - (void)viewDidLoad {
     
-    self.screensArray=[[NSArray alloc] initWithObjects:@"1.tiff",@"2.tiff",@"3.tiff",@"4.tiff",@"5.tiff",@"6.tiff",@"7.tiff", nil];
+    
+   
+    
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+    {
+        
+        screenImageView.frame=CGRectMake(0, 0, 577, 667);
+
+    self.screensArray=[[NSArray alloc]
+                       initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png", nil];
+    }
+    else{
+        screenImageView.frame=CGRectMake(0, 0, 700, 525);
+
+    
+    self.screensArray=[[NSArray alloc]
+                       initWithObjects:@"AssH-helpHz-1.png",@"AssH-helpHz-2.png",@"AssH-helpHz-3.png",@"AssH-helpHz-4.png",@"AssH-helpHz-5.png", nil];
+    }
+    
+   // self.screensArray=[[NSArray alloc]initWithObjects:@"1.tiff",@"2.tiff",@"3.tiff",@"4.tiff",@"5.tiff",@"6.tiff",@"7.tiff", nil];
    // pageNumberLabel.text = [NSString stringWithFormat:@"Page %d", pageNumber + 1];
     screenImageView.image=[UIImage imageNamed:[self.screensArray objectAtIndex:pageNumber]];
    // self.view.backgroundColor = [HelpPageViewController pageControlColorWithIndex:pageNumber];

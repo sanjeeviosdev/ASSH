@@ -7,7 +7,7 @@
 //
 
 #import "HelpPopoverController.h"
-static NSUInteger kNumberOfPages = 6;
+static NSUInteger kNumberOfPages = 5;
 @interface HelpPopoverController (PrivateMethods)
 - (void)loadScrollViewWithPage:(int)page;
 - (void)scrollViewDidScroll:(UIScrollView *)sender;
@@ -36,6 +36,22 @@ static NSUInteger kNumberOfPages = 6;
     }
     self.viewControllers = controllers;
     //[controllers release];
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+    {
+        self.scrollView.frame=CGRectMake(0, 0, 577, 667);
+        
+        self.pageControl.frame=CGRectMake(0, 667, 577, 36);
+        
+        
+    }
+    else
+    {
+        self.scrollView.frame=CGRectMake(0, 0, 700, 544);
+        self.pageControl.frame=CGRectMake(0, 525, 700, 36);
+
+    }
+
+    
 	
     // a page is the width of the scroll view
     self.scrollView.pagingEnabled = YES;
@@ -51,6 +67,7 @@ static NSUInteger kNumberOfPages = 6;
     // pages are created on demand
     // load the visible page
     // load the page on either side to avoid flashes when the user starts scrolling
+    
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
 
