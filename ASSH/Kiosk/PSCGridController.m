@@ -164,14 +164,7 @@
     seg1.tintColor=[UIColor colorWithRed:0.847 green:0.9255 blue:0.9725 alpha:1];
      self.segment = [[UIBarButtonItem alloc] initWithCustomView:seg1];
     
-//     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,300,45)];
-//    label.textColor = [UIColor grayColor];
-//    label.backgroundColor=[UIColor clearColor];
-//    label.text=@"";   //CUSTOM TITLE
-//    [label sizeToFit];
-    
-    
-    
+   
     self.biggerSpacer = [[UIBarButtonItem alloc]
                          initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
                          target:nil
@@ -448,6 +441,8 @@
             else
                [popoverController setPopoverContentSize:CGSizeMake(360.0f, popoverheight)];
             if (self.view.window != nil)
+            {
+        
                  if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation])) {
             
                 [popoverController presentPopoverFromRect:CGRectMake(175, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
@@ -456,7 +451,7 @@
             {
                 [popoverController presentPopoverFromRect:CGRectMake(185, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
             }
-            
+            }
                 
             
         }else {

@@ -236,7 +236,7 @@
     if ([MFMailComposeViewController canSendMail]) {
         MFMailComposeViewController *mailController = [[MFMailComposeViewController alloc] init];
         mailController.mailComposeDelegate = self;
-        NSString * pdfname=@"";
+      //  NSString * pdfname=@"";
         NSString *fileName;
         if (self.isSaveasDialogonShare==YES)
         {
@@ -900,7 +900,7 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         [MBProgressHUD showHUDAddedTo:self.view animated:NO];
         
         
-        NSString *str = [self.magazine fileName];
+       // NSString *str = [self.magazine fileName];
         // NSString *str = [NSString stringWithFormat:@"%@", [self.document.fileURL lastPathComponent]];
         
         //self.documentFileName = [NSString stringWithFormat:@"%@", self.document.title];
@@ -908,15 +908,15 @@ static NSString *PSCGestureStateToString(UIGestureRecognizerState state) {
         NSString *filename=[textfield.text stringByAppendingString:@".pdf"];
         
         //get the doc directory path
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSError *error;
+      //  NSFileManager *fileManager = [NSFileManager defaultManager];
+       // NSError *error;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
+    //    NSString *documentDBFolderPath = [documentsDirectory stringByAppendingPathComponent:@"Samples"];
         //current file path
-        NSString *currntPath=[documentDBFolderPath stringByAppendingPathComponent:str];
+       /// NSString *currntPath=[documentDBFolderPath stringByAppendingPathComponent:str];
         
-        NSString *documentDBFolderPathinMyTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
+       // NSString *documentDBFolderPathinMyTopic = [documentsDirectory stringByAppendingPathComponent:@"MyTopics"];
         
         if ([UIAPPDelegate isMyTopic])
         {
