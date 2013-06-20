@@ -278,17 +278,26 @@
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UISearchBarDelegate
 
-//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-//    [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-//        searchBar.alpha = 1.f;
-//    } completion:NULL];
-//}
-//
-//- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-//    [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{
-//        searchBar.alpha = 0.5f;
-//    } completion:NULL];
-//}
+
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]))
+    {
+        self.bookmarkTable.frame=CGRectMake(0, 44, 360, 260);
+        
+    }
+    
+    [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^{        searchBar.alpha = 1.f;
+   } completion:NULL];
+}
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    self.bookmarkTable.frame=CGRectMake(0, 44, 360, 458);
+
+    [UIView animateWithDuration:0.25f delay:0.f options:UIViewAnimationOptionAllowUserInteraction animations:^    {    searchBar.alpha = 0.5f;
+
+     } completion:NULL];
+}
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.topicsArray = nil;
@@ -301,6 +310,8 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    
+     self.bookmarkTable.frame=CGRectMake(0, 44, 360, 458);
     [searchBar resignFirstResponder];
 }
 

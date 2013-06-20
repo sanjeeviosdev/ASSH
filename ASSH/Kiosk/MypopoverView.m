@@ -57,8 +57,10 @@
     
    // template.navigationController.navigationBarHidden=NO;
     //[self presentModalViewController:template animated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelpopover"
-                                                        object:nil userInfo:nil];
+    
+    
+   // [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelpopover"
+                                                     //   object:nil userInfo:nil];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:template];
     
@@ -68,6 +70,13 @@
     
     
 }
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

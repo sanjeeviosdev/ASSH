@@ -832,10 +832,13 @@
 
     [self setProgressIndicatorVisible:PSCStoreManager.sharedStoreManager.isDiskDataLoaded animated:NO];
     [self updateGrid];
+    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
 
     // If navigationBar is offset, we're fixing that.
     PSPDFFixNavigationBarForNavigationControllerAnimated(self.navigationController, animated);
@@ -1602,13 +1605,14 @@ return (UICollectionViewCell *)cell;
 
            
     }
-    }
+   }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    scrollView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-50);
     // resign keyboard if we scroll down
     if (self.collectionView.contentOffset.y > 0) {
         [self.searchBar resignFirstResponder];

@@ -70,6 +70,8 @@
         [[NSUserDefaults  standardUserDefaults]setObject:emailsignatureField.text forKey:@"emailSignature"];
         
         [self dismissModalViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelpopover"
+                                                            object:nil userInfo:nil];
         
     }
     
@@ -78,7 +80,9 @@
 -(IBAction)cancel:(id)sender
 {
     [self dismissModalViewControllerAnimated:YES];
- 
+     [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelpopover"
+       object:nil userInfo:nil];
+
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
@@ -100,6 +104,12 @@
     }
 
     
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
