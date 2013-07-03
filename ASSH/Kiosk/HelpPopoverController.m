@@ -38,16 +38,19 @@ static NSUInteger kNumberOfPages = 5;
     //[controllers release];
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
     {
-        self.scrollView.frame=CGRectMake(0, 0, 577, 667);
+        self.scrollView.frame=CGRectMake(0, 0, 657, 840);
         
-        self.pageControl.frame=CGRectMake(0, 667, 577, 36);
+        self.pageControl.frame=CGRectMake(0, 840, 657, 36);
         
         
     }
     else
     {
-        self.scrollView.frame=CGRectMake(0, 0, 700, 544);
-        self.pageControl.frame=CGRectMake(0, 525, 700, 36);
+        self.view.frame=CGRectMake(0, 0, 800, 600);
+
+        
+        self.scrollView.frame=CGRectMake(0, 0, 800, 564);
+        self.pageControl.frame=CGRectMake(0, 564, 800, 36);
 
     }
 

@@ -597,13 +597,13 @@
         
         if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
         {
-            [popoverController setPopoverContentSize:CGSizeMake(577.0f, 700.0f)];
+            [popoverController setPopoverContentSize:CGSizeMake(657.0f, 876.0f)];
 
         [popoverController presentPopoverFromRect:CGRectMake(750, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }
         else
         {
-            [popoverController setPopoverContentSize:CGSizeMake(700.0f, 558.0f)];
+            [popoverController setPopoverContentSize:CGSizeMake(800.0f, 600.0f)];
 
           [popoverController presentPopoverFromRect:CGRectMake(1000, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }

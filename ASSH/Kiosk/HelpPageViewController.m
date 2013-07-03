@@ -56,13 +56,13 @@ static NSArray *__pageControlColorList = nil;
     if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
     {
         
-        screenImageView.frame=CGRectMake(0, 0, 577, 667);
+        screenImageView.frame=CGRectMake(0, 0, 657, 840);
 
     self.screensArray=[[NSArray alloc]
                        initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png", nil];
     }
     else{
-        screenImageView.frame=CGRectMake(0, 0, 700, 525);
+        screenImageView.frame=CGRectMake(0, 0, 800, 564);
 
     
     self.screensArray=[[NSArray alloc]

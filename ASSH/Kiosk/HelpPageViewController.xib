@@ -38,7 +38,7 @@
 					<object class="IBUIImageView" id="360418237">
 						<reference key="NSNextResponder" ref="5026745"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{700, 713}</string>
+						<string key="NSFrameSize">{657, 840}</string>
 						<reference key="NSSuperview" ref="5026745"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -46,7 +46,7 @@
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{700, 700}</string>
+				<string key="NSFrameSize">{657, 840}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
