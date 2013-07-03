@@ -603,7 +603,8 @@
         }
         else
         {
-            [popoverController setPopoverContentSize:CGSizeMake(800.0f, 600.0f)];
+            //[popoverController setPopoverContentSize:CGSizeMake(800.0f, 600.0f)];
+            [popoverController setPopoverContentSize:CGSizeMake(800.0f, 626.0f)];
 
           [popoverController presentPopoverFromRect:CGRectMake(1000, -105, 111, 111) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         }

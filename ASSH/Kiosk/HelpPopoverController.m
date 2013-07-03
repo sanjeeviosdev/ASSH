@@ -46,12 +46,18 @@ static NSUInteger kNumberOfPages = 5;
     }
     else
     {
+        /*
         self.view.frame=CGRectMake(0, 0, 800, 600);
 
         
         self.scrollView.frame=CGRectMake(0, 0, 800, 564);
         self.pageControl.frame=CGRectMake(0, 564, 800, 36);
-
+        */
+        self.view.frame=CGRectMake(0, 0, 800, 626);
+        
+        
+        self.scrollView.frame=CGRectMake(0, 0, 800, 590);
+        self.pageControl.frame=CGRectMake(0, 590, 800, 36);
     }
 
     

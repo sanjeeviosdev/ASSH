@@ -62,7 +62,8 @@ static NSArray *__pageControlColorList = nil;
                        initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png", nil];
     }
     else{
-        screenImageView.frame=CGRectMake(0, 0, 800, 564);
+        //screenImageView.frame=CGRectMake(0, 0, 800, 564);
+        screenImageView.frame=CGRectMake(0, 0, 800, 590);
 
     
     self.screensArray=[[NSArray alloc]
