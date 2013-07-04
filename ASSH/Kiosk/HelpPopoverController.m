@@ -7,7 +7,7 @@
 //
 
 #import "HelpPopoverController.h"
-static NSUInteger kNumberOfPages = 5;
+static NSUInteger kNumberOfPages = 10;
 @interface HelpPopoverController (PrivateMethods)
 - (void)loadScrollViewWithPage:(int)page;
 - (void)scrollViewDidScroll:(UIScrollView *)sender;

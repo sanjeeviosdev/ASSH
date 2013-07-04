@@ -59,7 +59,7 @@ static NSArray *__pageControlColorList = nil;
         screenImageView.frame=CGRectMake(0, 0, 657, 840);
 
     self.screensArray=[[NSArray alloc]
-                       initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png", nil];
+                       initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png",@"AssH-helpHz-6.png",@"AssH-helpHz-7.png",@"AssH-helpHz-8.png",@"AssH-helpHz-9.png",@"AssH-helpHz-10.png", nil];
     }
     else{
         //screenImageView.frame=CGRectMake(0, 0, 800, 564);
@@ -67,7 +67,7 @@ static NSArray *__pageControlColorList = nil;
 
     
     self.screensArray=[[NSArray alloc]
-                       initWithObjects:@"AssH-helpHz-1.png",@"AssH-helpHz-2.png",@"AssH-helpHz-3.png",@"AssH-helpHz-4.png",@"AssH-helpHz-5.png", nil];
+                       initWithObjects:@"AssH-helpHz-1.png",@"AssH-helpHz-2.png",@"AssH-helpHz-3.png",@"AssH-helpHz-4.png",@"AssH-helpHz-5.png",@"AssH-helpHz-6.png",@"AssH-helpHz-7.png",@"AssH-helpHz-8.png",@"AssH-helpHz-9.png",@"AssH-helpHz-10.png", nil];
     }
     
    // self.screensArray=[[NSArray alloc]initWithObjects:@"1.tiff",@"2.tiff",@"3.tiff",@"4.tiff",@"5.tiff",@"6.tiff",@"7.tiff", nil];
