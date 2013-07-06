@@ -59,7 +59,7 @@ static NSArray *__pageControlColorList = nil;
         screenImageView.frame=CGRectMake(0, 0, 657, 840);
 
     self.screensArray=[[NSArray alloc]
-                       initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png",@"AssH-helpHz-6.png",@"AssH-helpHz-7.png",@"AssH-helpHz-8.png",@"AssH-helpHz-9.png",@"AssH-helpHz-10.png", nil];
+                       initWithObjects:@"AssH-helpVt-1.png",@"AssH-helpVt-2.png",@"AssH-helpVt-3.png",@"AssH-helpVt-4.png",@"AssH-helpVt-5.png",@"AssH-helpVt-6.png",@"AssH-helpVt-7.png",@"AssH-helpVt-8.png",@"AssH-helpVt-9.png",@"AssH-helpVt-10.png", nil];
     }
     else{
         //screenImageView.frame=CGRectMake(0, 0, 800, 564);
