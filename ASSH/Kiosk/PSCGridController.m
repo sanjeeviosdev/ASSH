@@ -480,7 +480,7 @@
             NSString* FilePath = [FolderPath stringByAppendingPathComponent:pdf];
                                   
                                                             
-            pdfname=[pdfname stringByAppendingString:pdf];
+            pdfname=[UIAPPDelegate removeZZZ:[pdfname stringByAppendingString:pdf]];
             pdfname=[pdfname stringByAppendingString:@", "];
             NSData *pdfData = [NSData dataWithContentsOfFile:FilePath];
             [mailController addAttachmentData:pdfData mimeType:@"application/pdf"fileName:pdf];
