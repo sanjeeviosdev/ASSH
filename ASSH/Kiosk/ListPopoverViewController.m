@@ -27,6 +27,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (UIDeviceOrientationIsPortrait([[UIApplication sharedApplication] statusBarOrientation]))
+    {
+        self.table.frame=CGRectMake(0, 0, 450, 910);
+    }
+    else
+    {
+    
+        self.table.frame=CGRectMake(0, 0, 450, 650);
+    }
+
     // Do any additional setup after loading the view from its nib.
 }
 

@@ -436,10 +436,10 @@
             float popoverheight=(float)height;
             
             if (arrCount==0) {
-                 [popoverController setPopoverContentSize:CGSizeMake(360.0f, 200)];
+                 [popoverController setPopoverContentSize:CGSizeMake(450.0f, 200)];
             }
             else
-               [popoverController setPopoverContentSize:CGSizeMake(360.0f, popoverheight)];
+               [popoverController setPopoverContentSize:CGSizeMake(450.0f, popoverheight)];
             if (self.view.window != nil)
             {
         
